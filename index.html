@@ -3,13 +3,21 @@
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <style>
-    #testtext {color: white;}
+    #testtext {color: white; font-family: 'Poppins', sans-serif;}
+
+
     </style>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+
 </head>
 <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 <script>
+    var colors = ["#4dc9c3","#5559b0","#01b8ec", "#ff6e84"];
+    var index = 0;
+
+    var text;
     THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/';
     AFRAME.registerComponent('registerevents', {
         init: function () {
@@ -17,12 +25,19 @@
             marker.addEventListener('markerFound', function() {
                 var markerId = marker.id;
                 console.log('markerFound', markerId);
-                document.getElementById("testtext").innerText = "Change internal text";
+                text = marker.children[0];
+
+                // document.getElementById("modal").style.backgroundColor = colors[index % 4];
+                index+=1;
+
+                document.getElementById("infoImg").src = text.getAttribute('data-infoImgSrc');
+
+
+                document.getElementById("testtext").innerText = text.getAttribute('data-textValue');
+
             });
             marker.addEventListener('markerLost', function() {
-                var markerId = marker.id;
-                console.log('markerLost', markerId);
-                // TODO: Add your own code here to react to the marker being lost.
+
             });
         }
     });
@@ -30,10 +45,15 @@
 
 <body style='margin : 0px; overflow: hidden;'>
 
-<div style='position: absolute; left: 15%; bottom: 10%; background-color: rgba(0,0,0,0.5); text-align: center; z-index: 1;'>
+<div id="modal" style='position: absolute; width:70%; height: 40%; overflow: hidden; left: 15%; bottom: 10%; background-color: black; opacity: 0.8; text-align: center; z-index: 1;'>
 
     <p id="testtext">      This is test text.</p>
-    <img src="melting.gif" width="20%" height="20%">
+<!--    <img src="melting.gif" width="20%" height="20%">-->
+    <img src="" style="float: left;" id="infoImg" width="50%">
+
+    <img src="logilogo.png" width="25%" height="25%">
+
+
 
 
 
@@ -52,7 +72,7 @@
 
 
     <a-marker type='barcode' value='0' registerevents>
-        <a-text id="helloworld" value="Hello, World!"></a-text>
+        <a-text id="text_zero" data-infoImgSrc="g910_1.png" data-textValue="Dummy text 1"></a-text>
         <a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:red;'>
             <a-torus-knot radius='0.26' radius-tubular='0.05'
                           animation="property: rotation; to:360 0 0; dur: 5000; easing: linear; loop: true">
@@ -60,10 +80,26 @@
         </a-box>
     </a-marker>
 
-<!--    <a-marker id="animated-marker" type='barcode' value='1' registerevents>-->
-<!--        <a-text id="txt" value="Hello, World!" font="roboto" material='opacity: 0.5;'></a-text>-->
-<!--        -->
-<!--    </a-marker>-->
+    <a-marker id="animated-marker" type='barcode' value='1' registerevents>
+        <a-text id="text_one" data-infoImgSrc="g910_2.png" data-textValue="Dummy text 2" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:red;'>
+            <a-torus-knot radius='0.26' radius-tubular='0.05'
+                          animation="property: rotation; to:360 0 0; dur: 5000; easing: linear; loop: true">
+            </a-torus-knot>
+        </a-box>
+
+    </a-marker>
+
+    <a-marker id="animated-marker" type='barcode' value='2' registerevents>
+        <a-text id="text_one" data-infoImgSrc="g910_3.png" data-textValue="Dummy text 3" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:red;'>
+            <a-torus-knot radius='0.26' radius-tubular='0.05'
+                          animation="property: rotation; to:360 0 0; dur: 5000; easing: linear; loop: true">
+            </a-torus-knot>
+        </a-box>
+
+    </a-marker>
+
 
     <!-- use this <a-entity camera> to support multiple-markers, otherwise use <a-marker-camera> instead of </a-marker> -->
     <a-entity camera></a-entity>
