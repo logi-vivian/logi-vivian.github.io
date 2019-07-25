@@ -68,29 +68,42 @@
         <a-asset-item id="animated-asset" src="https://raw.githubusercontent.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-playground/models/CesiumMan.gltf"></a-asset-item>
     </a-assets>
 
+    <a-assets>
+        <a-asset-item id="cityModel" src="https://cdn.aframe.io/test-models/models/glTF-2.0/virtualcity/VC.gltf"></a-asset-item>
+    </a-assets>
+
+
+        <a-assets>
+            <a-asset-item id="armodel2" src="./bowser/scene.gltf" scale="0.00001 0.00001 0.00001"></a-asset-item>
+        </a-assets>
 
 
 
-    <a-marker type='barcode' value='0' registerevents>
-        <a-text id="text_zero" data-infoImgSrc="g910_1.png" data-textValue="Dummy text 1"></a-text>
-        <a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:red;'>
-            <a-torus-knot radius='0.26' radius-tubular='0.05'
-                          animation="property: rotation; to:360 0 0; dur: 5000; easing: linear; loop: true">
-            </a-torus-knot>
-        </a-box>
-    </a-marker>
+
+
+
+
+
+
+<!--    <a-marker type='barcode' value='0' registerevents>-->
+<!--        <a-text id="text_zero" data-infoImgSrc="g910_1.png" data-textValue="Dummy text 1"></a-text>-->
+
+<!--            <a-portal-door url='https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg' position='0 0 0' scale='0.7 1 0.7' rotation='0 90 0'><a-portal-door>-->
+
+
+<!--    </a-marker>-->
 
     <a-marker id="animated-marker" type='barcode' value='1' registerevents>
         <a-text id="text_one" data-infoImgSrc="g910_2.png" data-textValue="Dummy text 2" font="roboto" material='opacity: 0.5;'></a-text>
-        <a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:red;'>
-            <a-torus-knot radius='0.26' radius-tubular='0.05'
-                          animation="property: rotation; to:360 0 0; dur: 5000; easing: linear; loop: true">
-            </a-torus-knot>
-        </a-box>
+        <a-entity gltf-model="#armodel2" scale="0.2 0.2 0.2"></a-entity>
+
+
 
     </a-marker>
 
-    <a-marker id="animated-marker" type='barcode' value='2' registerevents>
+
+
+    <a-marker id="animated-marker" type='barcode' value='0' registerevents>
         <a-text id="text_one" data-infoImgSrc="g910_3.png" data-textValue="Dummy text 3" font="roboto" material='opacity: 0.5;'></a-text>
         <a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:red;'>
             <a-torus-knot radius='0.26' radius-tubular='0.05'
