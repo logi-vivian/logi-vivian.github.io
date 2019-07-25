@@ -13,6 +13,7 @@
 <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+<script src="./aframe-particle-system-component/dist/aframe-particle-system-component.min.js"></script>
 <script>
     var colors = ["#4dc9c3","#5559b0","#01b8ec", "#ff6e84"];
     var index = 0;
@@ -90,13 +91,12 @@
 
 <!--            <a-portal-door url='https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg' position='0 0 0' scale='0.7 1 0.7' rotation='0 90 0'><a-portal-door>-->
 
-
 <!--    </a-marker>-->
 
     <a-marker id="animated-marker" type='barcode' value='1' registerevents>
         <a-text id="text_one" data-infoImgSrc="g910_2.png" data-textValue="Dummy text 2" font="roboto" material='opacity: 0.5;'></a-text>
         <a-entity gltf-model="#armodel2" scale="0.2 0.2 0.2"></a-entity>
-
+        <a-entity position="0 0 0" particle-system="color: #000,#FFF"></a-entity>
 
 
     </a-marker>
