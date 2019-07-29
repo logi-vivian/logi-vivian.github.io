@@ -95,8 +95,8 @@
 
     <a-marker id="animated-marker" type='barcode' value='1' registerevents>
         <a-text id="text_one" data-infoImgSrc="g910_2.png" data-textValue="Dummy text 2" font="roboto" material='opacity: 0.5;'></a-text>
-        <a-entity gltf-model="#armodel2" scale="0.2 0.2 0.2"></a-entity>
-        <a-entity position="0 0 0" particle-system="color: #000,#FFF"></a-entity>
+        <a-entity animation="property: rotation; to:360 0 0; dur: 5000; easing: linear; loop: true" gltf-model="#armodel2" scale="0.2 0.2 0.2"></a-entity>
+        <a-entity position="0 0 0" particle-system="color: #000,#FFF "></a-entity>
 
 
     </a-marker>
