@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>three.js css3d - periodic table</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<!--    <link type="text/css" rel="stylesheet" href="main.css">-->
+    <style>
+
+/*        @-webkit-keyframes spin-scale {*/
+
+/*            50% {*/
+/*                transform: rotateY(0deg);*/
+/*            }*/
+/*            100% {*/
+/*                transform: rotateY(360deg);*/
+/*            }*/
+/*        }*/
+
+        a {
+            color: #8ff;
+        }
+
+        #menu {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .element {
+            width: 100px;
+            height: 160px;
+            box-shadow: 0px 0px 12px rgba(0,255,255,0.5);
+            border: 1px solid rgba(127,255,255,0.25);
+            font-family: Helvetica, sans-serif;
+            text-align: center;
+            line-height: normal;
+            cursor: default;
+        }
+
+        .element:hover {
+            box-shadow: 0px 0px 12px rgba(0,255,255,0.75);
+            border: 1px solid rgba(127,255,255,0.75);
+            transform: rotateY(180deg);
+        }
+
+        .element .number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 12px;
+            color: rgba(127,255,255,0.75);
+        }
+
+        .element .symbol {
+            position: absolute;
+            top: 40px;
+            left: 0px;
+            right: 0px;
+            font-size: 60px;
+            font-weight: bold;
+            color: rgba(255,255,255,0.75);
+            text-shadow: 0 0 10px rgba(0,255,255,0.95);
+        }
+
+        .element .details {
+            position: absolute;
+            bottom: 15px;
+            left: 0px;
+            right: 0px;
+            font-size: 12px;
+            color: rgba(127,255,255,0.75);
+        }
+
+        button {
+            color: rgba(127,255,255,0.75);
+            background: transparent;
+            outline: 1px solid rgba(127,255,255,0.75);
+            border: 0px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgba(0,255,255,0.5);
+        }
+
+        button:active {
+            color: #000000;
+            background-color: rgba(0,255,255,0.75);
+
+        }
+    </style>
+</head>
+<body>
+<script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+<script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+<script src="./aframe-particle-system-component/dist/aframe-particle-system-component.min.js"></script>
+
+<script src="./three.js/examples/js/libs/tween.min.js"></script>
+
+
+<script type="module">
+    import {
+        PerspectiveCamera,
+        Object3D,
+        Scene,
+        Vector3
+    } from "./three.js/build/three.module.js";
+
+    import { TrackballControls } from './three.js/examples/jsm/controls/TrackballControls.js';
+    import { CSS3DRenderer, CSS3DObject } from './three.js/examples/jsm/renderers/CSS3DRenderer.js';
+
+    var table = [
+        "1", "Check", "Don't use vampire energy.", 1, 1,
+        "-", "Mario", "4.002602", 18, 1,
+        "2", "Lithium", "6.941", 1, 2,
+        "-", "Kirby", "9.012182", 2, 2,
+        "3", "Boron", "10.811", 13, 2,
+        "-", "Fortnite", "12.0107", 14, 2,
+        "4", "Nitrogen", "14.0067", 15, 2,
+        "-", "Oxygen", "15.9994", 16, 2,
+        "5", "Fluorine", "18.9984032", 17, 2,
+        "-", "Neon", "20.1797", 18, 2,
+        "6", "Sodium", "22.98976...", 1, 3,
+        "-", "Magnesium", "24.305", 2, 3,
+        "7", "Aluminium", "26.9815386", 13, 3,
+        "-", "Silicon", "28.0855", 14, 3,
+        "8", "Phosphorus", "30.973762", 15, 3,
+        "-", "Sulfur", "32.065", 16, 3,
+        "9", "Chlorine", "35.453", 17, 3,
+        "-", "Argon", "39.948", 18, 3,
+        "10", "Potassium", "39.948", 1, 4,
+        "-", "Calcium", "40.078", 2, 4,
+        "11", "Scandium", "44.955912", 3, 4,
+        "-", "Titanium", "47.867", 4, 4,
+        "12", "Vanadium", "50.9415", 5, 4,
+        "-", "Chromium", "51.9961", 6, 4,
+        "13", "Manganese", "54.938045", 7, 4,
+        "-", "Iron", "55.845", 8, 4,
+        "14", "Cobalt", "58.933195", 9, 4,
+        "-", "Nickel", "58.6934", 10, 4,
+        "15", "Copper", "63.546", 11, 4,
+        "-", "Zinc", "65.38", 12, 4,
+        "16", "Gallium", "69.723", 13, 4,
+        "-", "Germanium", "72.63", 14, 4,
+        "17", "Arsenic", "74.9216", 15, 4,
+        "-", "Selenium", "78.96", 16, 4,
+        "18", "Bromine", "79.904", 17, 4,
+        "-", "Krypton", "83.798", 18, 4,
+        "19", "Rubidium", "85.4678", 1, 5,
+        "-", "Strontium", "87.62", 2, 5,
+        "20", "Yttrium", "88.90585", 3, 5,
+        "-", "Zirconium", "91.224", 4, 5,
+        "21", "Niobium", "92.90628", 5, 5,
+        "-", "Molybdenum", "95.96", 6, 5,
+        "22", "Technetium", "(98)", 7, 5,
+        "-", "Ruthenium", "101.07", 8, 5,
+        "23", "Rhodium", "102.9055", 9, 5,
+        "-", "Palladium", "106.42", 10, 5,
+        "24", "Silver", "107.8682", 11, 5,
+        "-", "Cadmium", "112.411", 12, 5,
+        "25", "Indium", "114.818", 13, 5,
+        "-", "Tin", "118.71", 14, 5,
+        "26", "Antimony", "121.76", 15, 5,
+        "-", "Tellurium", "127.6", 16, 5,
+        "27", "Iodine", "126.90447", 17, 5,
+        "-", "Xenon", "131.293", 18, 5,
+        "28", "Caesium", "132.9054", 1, 6,
+        "-", "Barium", "132.9054", 2, 6,
+        "29", "Lanthanum", "138.90547", 4, 9,
+        "-", "Cerium", "140.116", 5, 9,
+        "30", "Praseodymium", "140.90765", 6, 9,
+        "-", "Neodymium", "144.242", 7, 9,
+
+
+    ];
+
+    var camera, scene, renderer;
+    var controls;
+
+    var objects = [];
+    var targets = { table: [], sphere: [], helix: [], grid: [] };
+
+    init();
+    animate();
+
+    function removeAll() {
+        init();
+        animate();
+    }
+
+    function init() {
+
+        camera = new PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 10000 );
+        camera.position.z = 3000;
+
+        scene = new Scene();
+
+        // table
+
+
+
+        for ( var i = 0; i < table.length; i += 5 ) {
+
+
+            let element = document.createElement( 'div' );
+            element.className = 'element';
+            element.setAttribute('id', i)
+            element.style.backgroundColor = 'rgba(0,127,127,' + ( Math.random() * 0.5 + 0.25 ) + ')';
+
+            element.addEventListener("click", function(){
+                flipCard(element);
+            });
+
+            var number = document.createElement( 'div' );
+            number.className = 'number';
+            number.textContent = ( i / 5 ) + 1;
+            // element.appendChild( number );
+
+            if (i % 2) {
+                var marioImg = document.createElement('img');
+                marioImg.src = "./yoshi.png";
+                marioImg.style.width = "100px";
+                marioImg.style.top = "20px";
+                element.appendChild(marioImg);
+
+            }
+
+            var symbol = document.createElement( 'div' );
+            symbol.className = 'symbol';
+            symbol.textContent = table[ i ];
+            element.appendChild( symbol );
+
+            var details = document.createElement( 'div' );
+            details.className = 'details';
+            details.innerHTML = table[ i + 1 ] + '<br>' + table[ i + 2 ];
+            element.appendChild( details );
+            details.style.display = 'none';
+            var object = new CSS3DObject( element );
+            object.position.x = Math.random() * 4000 - 2000;
+            object.position.y = Math.random() * 4000 - 2000;
+            object.position.z = Math.random() * 4000 - 2000;
+            scene.add( object );
+
+            objects.push( object );
+
+            //
+
+            var object = new Object3D();
+            object.position.x = ( table[ i + 3 ] * 140 ) - 1330;
+            object.position.y = - ( table[ i + 4 ] * 180 ) + 990;
+
+            targets.table.push( object );
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+        // helix
+
+        var vector = new Vector3();
+
+        for ( var i = 0, l = objects.length; i < l; i ++ ) {
+
+            var theta = i * 0.22 + Math.PI;
+            var y = - ( i * 20 ) + 450;
+
+            var object = new Object3D();
+
+            object.position.setFromCylindricalCoords( 500, theta, y );
+
+            vector.x = object.position.x * 2;
+            vector.y = object.position.y;
+            vector.z = object.position.z * 2;
+
+            object.lookAt( vector );
+
+            targets.helix.push( object );
+
+        }
+
+        // grid
+
+        for ( var i = 0; i < objects.length; i ++ ) {
+
+            var object = new Object3D();
+
+            object.position.x = ( ( i % 5 ) * 400 ) - 800;
+            object.position.y = ( - ( Math.floor( i / 5 ) % 5 ) * 400 ) + 800;
+            object.position.z = ( Math.floor( i / 25 ) ) * 1000 - 2000;
+
+            targets.grid.push( object );
+
+        }
+
+        //
+
+        renderer = new CSS3DRenderer();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        document.getElementById( 'container' ).appendChild( renderer.domElement );
+
+        //
+
+        controls = new TrackballControls( camera, renderer.domElement );
+        controls.minDistance = 500;
+        controls.maxDistance = 6000;
+        controls.addEventListener( 'change', render );
+
+
+        var button = document.getElementById( 'helix' );
+
+        button.addEventListener( 'onClick', function () {
+
+            transform( targets.helix, 2000 );
+
+        }, false );
+
+
+        transform( targets.helix, 2000 );
+
+        window.addEventListener( 'resize', onWindowResize, false );
+
+    }
+
+
+
+    function transform( targets, duration ) {
+
+        // TWEEN.removeAll();
+
+        for ( var i = 0; i < objects.length; i ++ ) {
+            if (i % 2 == 0) {
+                var object = objects[ i ];
+                var target = targets[ i ];
+
+                new TWEEN.Tween( object.position )
+                    .to( { x: target.position.x, y: target.position.y, z: target.position.z }, Math.random() * duration + duration )
+                    .easing( TWEEN.Easing.Exponential.InOut )
+                    .start();
+
+                new TWEEN.Tween( object.rotation )
+                    .to( { x: target.rotation.x, y: target.rotation.y, z: target.rotation.z }, Math.random() * duration + duration )
+                    .easing( TWEEN.Easing.Exponential.InOut )
+                    .start();
+
+
+            }
+
+
+
+        }
+
+        new TWEEN.Tween( this )
+            .to( {}, duration * 2 )
+            .onUpdate( render )
+            .start();
+
+    }
+
+    function onWindowResize() {
+
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+
+        renderer.setSize( window.innerWidth, window.innerHeight );
+
+        render();
+
+    }
+
+    function animate() {
+
+        requestAnimationFrame( animate );
+
+        TWEEN.update();
+
+        controls.update();
+
+    }
+
+    function render() {
+
+
+        renderer.render( scene, camera );
+
+    }
+
+    function flipCard(element) {
+
+        if (element.width > "400px") {
+            element.style.width = "100px";
+            console.log("shrink");
+
+        }
+
+
+        var cardId = element.getAttribute('id');
+        console.log(element.getAttribute('id'));
+        console.log(element.children[2]);
+
+        element.style.backgroundColor = 'rgb(0,150,150)';
+
+        element.style.transition = "0.5s ease-in-out";
+        element.style.animation = "rotateY(0deg) rotateY(360deg)"
+        // element.style.webkitAnimation = "spin-scale 2s";
+        // element.style.width = "90%";
+        // element.style.height = "90%";
+        element.children[2].style.display = "block";
+
+    }
+
+
+
+
+</script>
+
+<a-scene style="position: absolute;" id="scene" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+    <a-entity position="0 -2 0" particle-system="color: #000,#FFF; size: 1; particleCount:1000"></a-entity>
+
+
+
+</a-scene>
+
+
+<div id="info"><a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> css3d - periodic table forked from library. <a href="https://plus.google.com/113862800338869870683/posts/QcFk5HrWran" target="_blank" rel="noopener">info</a>.</div>
+<div id="container"></div>
+<div id="menu">
+
+    <button id="helix">HELIX</button>
+    <button id="remove" onclick="removeAll()">REMOVE</button>
+
+</div>
+
+</body>
+</html>
