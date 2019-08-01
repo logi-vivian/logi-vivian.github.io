@@ -247,6 +247,7 @@
 
             objects.push( object );
 
+
             //
 
             var object = new Object3D();
@@ -415,8 +416,8 @@
         element.style.transition = "0.5s ease-in-out";
         element.style.animation = "rotateY(0deg) rotateY(360deg)"
         // element.style.webkitAnimation = "spin-scale 2s";
-        // element.style.width = "90%";
-        // element.style.height = "90%";
+        element.style.width = window.innerWidth ;
+        element.style.height = "90%";
         element.children[2].style.display = "block";
 
     }
@@ -426,12 +427,12 @@
 
 </script>
 
-<a-scene style="position: absolute;" id="scene" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
-    <a-entity position="0 -2 0" particle-system="color: #000,#FFF; size: 1; particleCount:1000"></a-entity>
+<!--<a-scene style="position: absolute;" id="scene" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>-->
+<!--&lt;!&ndash;    <a-entity position="0 -2 0" particle-system="color: #000,#FFF; size: 1; particleCount:1000"></a-entity>&ndash;&gt;-->
 
 
 
-</a-scene>
+<!--</a-scene>-->
 
 
 <div id="info"><a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> css3d - periodic table forked from library. <a href="https://plus.google.com/113862800338869870683/posts/QcFk5HrWran" target="_blank" rel="noopener">info</a>.</div>
