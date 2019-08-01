@@ -8,8 +8,10 @@
 
     </style>
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link href="fog.css" rel="stylesheet">
 
 </head>
+
 <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
@@ -19,10 +21,23 @@
     var index = 0;
 
     var text;
+    var newFog = document.createElement( 'div' );
+    newFog.id = "fog";
+
+
     THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/';
+    AFRAME.registerComponent("foo", {
+        init: function() {
+            this.el.addEventListener("click", (e)=>{console.log("HELLO")})
+        }
+    })
+
     AFRAME.registerComponent('registerevents', {
         init: function () {
             var marker = this.el;
+
+
+
             marker.addEventListener('markerFound', function() {
                 var markerId = marker.id;
                 console.log('markerFound', markerId);
@@ -31,10 +46,17 @@
                 // document.getElementById("modal").style.backgroundColor = colors[index % 4];
                 index+=1;
 
-                document.getElementById("infoImg").src = text.getAttribute('data-infoImgSrc');
+                // document.getElementById("infoImg").src = text.getAttribute('data-infoImgSrc');
+
+
 
 
                 document.getElementById("testtext").innerText = text.getAttribute('data-textValue');
+
+
+                // document.body.appendChild(newFog);
+                // document.body.appendChild(recycleMice);
+                // document.body.appendChild(recycleKeyboard);
 
             });
             marker.addEventListener('markerLost', function() {
@@ -42,28 +64,50 @@
             });
         }
     });
+
+
 </script>
 
-<body style='margin : 0px; overflow: hidden;'>
+<body style='margin : 0; overflow: hidden;'>
 
-<div id="modal" style='position: absolute; width:70%; height: 40%; overflow: hidden; left: 15%; bottom: 10%; background-color: black; opacity: 0.8; text-align: center; z-index: 1;'>
+<div id="modal" style='position: absolute; width:100%; height: 100%; overflow: hidden; background-color: black; opacity: 0.5; text-align: center; z-index: 0;'>
 <a href="cards.html"> <p>x</p> </a>
     <p id="testtext">      This is test text.</p>
-<!--    <img src="melting.gif" width="20%" height="20%">-->
     <img src="" style="float: left;" id="infoImg" width="50%">
-
-<!--    <img src="logilogo.png" width="25%" height="25%">-->
-
-
-
 
 
 </div>
 
 
+<button onclick="registeredClick()" style="position: absolute; left: 50%; top: 50%; z-index: 3;"><h1>RECYCLE</h1></button>
 
+<script>
+    var clicks = 0;
+    var pollutionSystem = ["#pollution1", "#pollution2", "#pollution3", "#pollution4"];
+
+    function registeredClick() {
+        console.log("hi");
+        // var pollutionParticles = document.querySelector('#pollution');
+        // let partSys = pollutionParticles.getAttribute("particle-system")
+        var nextToRemove = document.querySelector(pollutionSystem[clicks]);
+        clicks += 1;
+
+        if (clicks > pollutionSystem.length) {
+
+            console.log("done");
+        } else {
+            nextToRemove.parentNode.removeChild(nextToRemove);
+        }
+
+
+
+        console.log(clicks);
+
+
+    }
+</script>
 <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
-<a-scene id="scene" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+<a-scene id="scene" cursor="rayOrigin: mouse" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
 
     <a-assets>
         <a-asset-item id="animated-asset" src="https://raw.githubusercontent.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-playground/models/CesiumMan.gltf"></a-asset-item>
@@ -74,15 +118,23 @@
     </a-assets>
 
 
+    <a-assets>
+        <a-asset-item id="bowser" src="./bowser/scene.gltf" scale="0.00001 0.00001 0.00001"></a-asset-item>
+    </a-assets>
+
         <a-assets>
-            <a-asset-item id="armodel2" src="./bowser/scene.gltf" scale="0.00001 0.00001 0.00001"></a-asset-item>
+            <a-asset-item id="lego" src="./lego/scene.gltf" scale="0.00001 0.00001 0.00001"></a-asset-item>
         </a-assets>
 
+    <a-assets>
+        <a-asset-item id="earth" src="./lowpolyearth/scene.gltf" scale="0.001 0.01 0.01"></a-asset-item>
+    </a-assets>
 
 
 
 
 
+<!--    <a-entity position="0 2.25 -15" particle-system="preset: dust; texture: ./aframe-particle-systems-component/dist/images/star2.png; color: #0000FF,#00FF00,#FF0000"></a-entity>-->
 
 
 
@@ -94,9 +146,24 @@
 <!--    </a-marker>-->
 
     <a-marker id="animated-marker" type='barcode' value='1' registerevents>
-        <a-text id="text_one" data-infoImgSrc="g910_2.png" data-textValue="Dummy text 2" font="roboto" material='opacity: 0.5;'></a-text>
-        <a-entity animation="property: rotation; to:360 0 0; dur: 5000; easing: linear; loop: true" gltf-model="#armodel2" scale="0.2 0.2 0.2"></a-entity>
-        <a-entity position="0 0 0" particle-system="color: #000,#FFF "></a-entity>
+<!--        <div id="fog"></div>-->
+                <a-text id="text_one" data-textValue="RECYCLE" font="roboto" material='opacity: 0.5;'></a-text>
+
+        <!--        <a-text id="text_one" data-infoImgSrc="g910_2.png" data-textValue="RECYCLE" font="roboto" material='opacity: 0.5;'></a-text>-->
+        <a-entity animation="  property: rotation; to:0 360 0; dur: 5000; easing: linear; loop: true" gltf-model="#earth"  position="0 0 0" scale="0.05 0.05 0.05"></a-entity>
+
+        <a-entity position="0 10 1" animation= "property: rotation; to:20 360 0; dur: 5000; easing: linear; loop: true" gltf-model="#lego" scale="0.05 0.05 0.05"></a-entity>
+
+
+        <a-entity id="pollution1" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/ewaste.png;  particle-count: 2000; color: #FF0000"></a-entity>
+        <a-entity id="pollution2" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/smoke.png;  particle-count: 2000; color: ##0000FF"></a-entity>
+        <a-entity id="pollution3" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/gameboy.png;  particle-count: 2000;"></a-entity>
+        <a-entity id="pollution4" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/oldtv2.png;  particle-count: 2000;"></a-entity>
+
+
+        <a-entity position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/ewaste.png;  particle-count: 500; color: #FF0000,#0000FF"></a-entity>
+
+
 
 
     </a-marker>
