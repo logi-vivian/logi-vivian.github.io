@@ -4,19 +4,8 @@
     <title>three.js css3d - periodic table</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-<!--    <link type="text/css" rel="stylesheet" href="main.css">-->
+    <link type="text/css" rel="stylesheet" href="main.css">
     <style>
-
-/*        @-webkit-keyframes spin-scale {*/
-
-/*            50% {*/
-/*                transform: rotateY(0deg);*/
-/*            }*/
-/*            100% {*/
-/*                transform: rotateY(360deg);*/
-/*            }*/
-/*        }*/
-
         a {
             color: #8ff;
         }
@@ -97,9 +86,22 @@
 <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-<script src="./aframe-particle-system-component/dist/aframe-particle-system-component.min.js"></script>
+<script>
+    THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/';
+</script>
 
 <script src="./three.js/examples/js/libs/tween.min.js"></script>
+
+<div id="info"><a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> css3d - periodic table. <a href="https://plus.google.com/113862800338869870683/posts/QcFk5HrWran" target="_blank" rel="noopener">info</a>.</div>
+<div id="container"></div>
+<div id="menu">
+
+    <button id="helix">HELIX</button>
+    <button id="remove" onclick="removeAll(); console.log('remove')">REMOVE</button>
+
+</div>
+
+
 
 
 <script type="module">
@@ -129,6 +131,8 @@
         "7", "Aluminium", "26.9815386", 13, 3,
         "-", "Silicon", "28.0855", 14, 3,
         "8", "Phosphorus", "30.973762", 15, 3,
+
+
         "-", "Sulfur", "32.065", 16, 3,
         "9", "Chlorine", "35.453", 17, 3,
         "-", "Argon", "39.948", 18, 3,
@@ -184,13 +188,10 @@
     var objects = [];
     var targets = { table: [], sphere: [], helix: [], grid: [] };
 
+    var bestpractices = {"1": "a", "2": "a"}
+
     init();
     animate();
-
-    function removeAll() {
-        init();
-        animate();
-    }
 
     function init() {
 
@@ -222,7 +223,7 @@
 
             if (i % 2) {
                 var marioImg = document.createElement('img');
-                marioImg.src = "./yoshi.png";
+                marioImg.src = "../src/mario.png";
                 marioImg.style.width = "100px";
                 marioImg.style.top = "20px";
                 element.appendChild(marioImg);
@@ -246,7 +247,6 @@
             scene.add( object );
 
             objects.push( object );
-
 
             //
 
@@ -335,7 +335,9 @@
 
     }
 
-
+    function removeAll() {
+        init();
+    }
 
     function transform( targets, duration ) {
 
@@ -414,11 +416,9 @@
         element.style.backgroundColor = 'rgb(0,150,150)';
 
         element.style.transition = "0.5s ease-in-out";
-        element.style.animation = "rotateY(0deg) rotateY(360deg)"
-        // element.style.webkitAnimation = "spin-scale 2s";
-        element.style.width = window.innerWidth ;
-        element.style.height = "90%";
+        element.style.transform += "rotateY(180deg) scale(2)";
         element.children[2].style.display = "block";
+
 
     }
 
@@ -426,23 +426,5 @@
 
 
 </script>
-
-<!--<a-scene style="position: absolute;" id="scene" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>-->
-<!--&lt;!&ndash;    <a-entity position="0 -2 0" particle-system="color: #000,#FFF; size: 1; particleCount:1000"></a-entity>&ndash;&gt;-->
-
-
-
-<!--</a-scene>-->
-
-
-<div id="info"><a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> css3d - periodic table forked from library. <a href="https://plus.google.com/113862800338869870683/posts/QcFk5HrWran" target="_blank" rel="noopener">info</a>.</div>
-<div id="container"></div>
-<div id="menu">
-
-    <button id="helix">HELIX</button>
-    <button id="remove" onclick="removeAll()">REMOVE</button>
-
-</div>
-
 </body>
 </html>
