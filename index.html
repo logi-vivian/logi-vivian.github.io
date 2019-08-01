@@ -86,21 +86,34 @@
     var pollutionSystem = ["#pollution1", "#pollution2", "#pollution3", "#pollution4"];
 
     function registeredClick() {
-        console.log("hi");
-        // var pollutionParticles = document.querySelector('#pollution');
-        // let partSys = pollutionParticles.getAttribute("particle-system")
-        var nextToRemove = document.querySelector(pollutionSystem[clicks]);
-        clicks += 1;
 
-        if (clicks > pollutionSystem.length) {
 
-            console.log("done");
-        } else {
+        // if we have under click == 0 1 2 3
+
+        if (clicks < pollutionSystem.length ) {
+
+            var nextToRemove = document.querySelector(pollutionSystem[clicks]);
             nextToRemove.parentNode.removeChild(nextToRemove);
+            console.log(nextToRemove);
+
+            if (clicks == pollutionSystem.length - 1) {
+                var stellarSystem = document.createElement('a-entity');
+                stellarSystem.setAttribute('particle-system', {
+
+                    color: "#0eeee",
+                    particleCount: "100",
+                    size: "10"
+                });
+                document.querySelector('#scene').appendChild(stellarSystem);
+                console.log("adding new particle system");
+            }
+
+        } else {
+            var win = window.open("https://www.logitech.com/en-us/sustainability/recycling.html", 'newwin');
+
         }
 
-
-
+        clicks += 1;
         console.log(clicks);
 
 
@@ -159,9 +172,6 @@
         <a-entity id="pollution2" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/smoke.png;  particle-count: 2000; color: ##0000FF"></a-entity>
         <a-entity id="pollution3" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/gameboy.png;  particle-count: 2000;"></a-entity>
         <a-entity id="pollution4" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/oldtv2.png;  particle-count: 2000;"></a-entity>
-
-
-        <a-entity position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/ewaste.png;  particle-count: 500; color: #FF0000,#0000FF"></a-entity>
 
 
 
