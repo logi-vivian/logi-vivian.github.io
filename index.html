@@ -5,6 +5,31 @@
     <style>
     #testtext {color: white; font-family: 'Poppins', sans-serif;}
 
+     .textinput {
+         margin: 20px;
+         position: relative;
+     }
+    #map {
+        height: 60%;
+        display: flex;
+        top: 15%;
+        left: 25%;
+        width: 60%;
+        background-color: white;
+        justify: center;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        font-family: 'Poppins', sans-serif;
+
+
+
+        height: 100%;
+        margin: 0;
+        background-color: black;
+        padding: 0;
+    }
+
 
     </style>
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
@@ -16,6 +41,9 @@
 <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
 <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
 <script src="./aframe-particle-system-component/dist/aframe-particle-system-component.min.js"></script>
+<script src="https://unpkg.com/aframe-particleplayer-component/dist/aframe-particleplayer-component.min.js"></script>
+
+
 <script>
     var colors = ["#4dc9c3","#5559b0","#01b8ec", "#ff6e84"];
     var index = 0;
@@ -31,6 +59,29 @@
             this.el.addEventListener("click", (e)=>{console.log("HELLO")})
         }
     })
+
+    AFRAME.registerComponent('trigger', {
+        init: function() {
+            document.addEventListener('keydown', evt => {
+                if (evt.keyCode === 32) { this.trigger(); }
+            });
+            document.addEventListener('click', () => {
+                this.trigger();
+            });
+        },
+
+        trigger: function() {
+            this.el.emit('particleplayerstart', {
+                position: new THREE.Vector3(
+                    (Math.random() - 0.5) * 7,
+                    Math.random() * 2,
+                    -5 - Math.random() * 2
+                ),
+                rotation: new THREE.Euler(Math.random() * 1 - .5, 0, 0)
+            });
+        }
+    });
+
 
     AFRAME.registerComponent('registerevents', {
         init: function () {
@@ -54,9 +105,6 @@
                 document.getElementById("testtext").innerText = text.getAttribute('data-textValue');
 
 
-                // document.body.appendChild(newFog);
-                // document.body.appendChild(recycleMice);
-                // document.body.appendChild(recycleKeyboard);
 
             });
             marker.addEventListener('markerLost', function() {
@@ -79,7 +127,7 @@
 </div>
 
 
-<button onclick="registeredClick()" style="position: absolute; left: 50%; top: 50%; z-index: 3;"><h1>RECYCLE</h1></button>
+<button onclick="registeredClick()" style="position: absolute; background-color: rgba(0,0,0,0) left: 50%; top: 50%; z-index: 3;"><img src="recyclelogo.png"></button>
 
 <script>
     var clicks = 0;
@@ -119,15 +167,16 @@
 
     }
 </script>
+
+
 <!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
 <a-scene id="scene" cursor="rayOrigin: mouse" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+    <a-camera position="0 0 4"></a-camera>
+
 
     <a-assets>
-        <a-asset-item id="animated-asset" src="https://raw.githubusercontent.com/nicolocarpignoli/nicolocarpignoli.github.io/master/ar-playground/models/CesiumMan.gltf"></a-asset-item>
-    </a-assets>
-
-    <a-assets>
-        <a-asset-item id="cityModel" src="https://cdn.aframe.io/test-models/models/glTF-2.0/virtualcity/VC.gltf"></a-asset-item>
+        <a-asset-item id="particlesJson" src="./particles-fireworks.json"></a-asset-item>
+        <img src="./sprite.png" id="particleTex">
     </a-assets>
 
 
@@ -144,7 +193,9 @@
     </a-assets>
 
 
-
+    <a-entity position="0 1 -5"
+              trigger
+              particleplayer="on: particleplayerstart; src: #particlesJson; img: #particleTex; dur: 4000; count: 50%; scale: 0.6; pscale: 2; interpolate: true; shader: standard; poolSize: 20"></a-entity>
 
 
 <!--    <a-entity position="0 2.25 -15" particle-system="preset: dust; texture: ./aframe-particle-systems-component/dist/images/star2.png; color: #0000FF,#00FF00,#FF0000"></a-entity>-->
@@ -158,6 +209,23 @@
 
 <!--    </a-marker>-->
 
+<!--    <a-sphere position="0 0 0" radius="0.1" opacity = "0.5" animation="property: color; dir: alternate; dur: 1000;-->
+<!--                           easing: easeInSine; loop: true; to: #5F5"-->
+<!--              animation__scale="property: scale; dir: alternate; dur: 200;-->
+<!--                           easing: easeInSine; loop: true; to: 1.2 1 1.2"-->
+<!--              animation__yoyo="property: position; dir: alternate; dur: 1000;-->
+<!--                                 easing: easeInSine; loop: true; to: 0 2 0">-->
+<!--        <a-sphere radius="0.1" opacity="0.5"></a-sphere>-->
+
+
+<!--        </a-sphere>-->
+
+<!--    </a-sphere>-->
+
+            <a-entity id="pollution1" position="0 2.25 -15" particle-system="preset: dust; size: 100;  texture: ./aframe-particle-system-component/dist/images/circuitbutterfly.png;  max-particle-count: 200;"></a-entity>
+
+
+
     <a-marker id="animated-marker" type='barcode' value='1' registerevents>
 <!--        <div id="fog"></div>-->
                 <a-text id="text_one" data-textValue="RECYCLE" font="roboto" material='opacity: 0.5;'></a-text>
@@ -168,10 +236,10 @@
         <a-entity position="0 10 1" animation= "property: rotation; to:20 360 0; dur: 5000; easing: linear; loop: true" gltf-model="#lego" scale="0.05 0.05 0.05"></a-entity>
 
 
-        <a-entity id="pollution1" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/ewaste.png;  particle-count: 2000; color: #FF0000"></a-entity>
-        <a-entity id="pollution2" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/smoke.png;  particle-count: 2000; color: ##0000FF"></a-entity>
-        <a-entity id="pollution3" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/gameboy.png;  particle-count: 2000;"></a-entity>
-        <a-entity id="pollution4" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/oldtv2.png;  particle-count: 2000;"></a-entity>
+<!--        <a-entity id="pollution1" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/ewaste.png;  particle-count: 2000; color: #FF0000"></a-entity>-->
+<!--        <a-entity id="pollution2" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/smoke.png;  particle-count: 2000; color: ##0000FF"></a-entity>-->
+<!--        <a-entity id="pollution3" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/gameboy.png;  particle-count: 2000;"></a-entity>-->
+<!--        <a-entity id="pollution4" position="0 2.25 -15" particle-system="preset: dust; size: 10;  texture: ./aframe-particle-system-component/dist/images/oldtv2.png;  particle-count: 2000;"></a-entity>-->
 
 
 
@@ -200,6 +268,8 @@
         console.log('test');
 
     });
+
 </script>
+<script type="text/javascript" src="./circles.js"></script>
 </body>
 </html>
