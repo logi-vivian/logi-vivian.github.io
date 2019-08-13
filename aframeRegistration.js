@@ -44,6 +44,7 @@ AFRAME.registerComponent('registerevents', {
 
             if (markerId == 0) {
                 document.getElementById("map").style.display = 'block';
+                document.getElementById("modal").style.display = 'none';
 
             }
 
@@ -52,6 +53,7 @@ AFRAME.registerComponent('registerevents', {
         });
         marker.addEventListener('markerLost', function () {
             document.getElementById("map").style.display = 'none';
+            document.getElementById("modal").style.display = 'block';
         });
 
     }

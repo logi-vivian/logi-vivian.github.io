@@ -7,8 +7,15 @@ body {
 
 #map {
     position: absolute;
-    height: 50%;
-    width: 100%;
+    top: 5%;
+    left: 5%;
+    height: 90%;
+    width: 90%;
+    overflow: hidden;
+    opacity: 0.8;
+    text-align: center;
+    background-color: #000000;
+    z-index: 1;
 
 }
 
