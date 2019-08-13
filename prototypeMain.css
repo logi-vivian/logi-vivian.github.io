@@ -1,0 +1,27 @@
+body {
+    color: white; font-family: 'Poppins', sans-serif;
+}
+
+
+
+#map {
+    position: absolute;
+    height: 50%;
+    display: none;
+    top: 0;
+    width: 100%;
+
+}
+
+
+#modal {
+    position: absolute;
+    bottom: 0;
+    height: 50%;
+    overflow: hidden;
+    opacity: 0.8;
+    text-align: center;
+    background-color: #000000;
+    z-index: 0;
+    width: 100%;
+}
