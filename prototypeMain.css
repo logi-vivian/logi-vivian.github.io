@@ -9,7 +9,6 @@ body {
     position: absolute;
     height: 50%;
     display: none;
-    top: 0;
     width: 100%;
 
 }
@@ -17,8 +16,8 @@ body {
 
 #modal {
     position: absolute;
-    bottom: 0;
-    height: 50%;
+    top: 0;
+    height: 100%;
     overflow: hidden;
     opacity: 0.8;
     text-align: center;
