@@ -44,7 +44,7 @@ AFRAME.registerComponent('registerevents', {
 
             if (markerId == 0) {
                 document.getElementById("map").style.display = 'block';
-   
+
             }
 
 
