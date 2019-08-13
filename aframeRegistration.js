@@ -42,11 +42,10 @@ AFRAME.registerComponent('registerevents', {
 
             document.getElementById("testtext").innerText = text.getAttribute('data-textValue');
 
-            // if (markerId == 0) {
-            //     document.getElementById("map").style.display = 'block';
-            //     document.getElementById('modal').style.display = 'none';
-            //
-            // }
+            if (markerId == 0) {
+                document.getElementById("map").style.display = 'block';
+   
+            }
 
 
 
