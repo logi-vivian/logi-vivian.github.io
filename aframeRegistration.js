@@ -29,6 +29,27 @@ AFRAME.registerComponent('trigger', {
 });
 
 
+AFRAME.registerComponent('changegif', {
+    init: function () {
+        var marker = this.el;
+
+        marker.addEventListener('markerFound', function () {
+            var markerId = marker.id;
+            console.log('markerFound', markerId);
+            text = marker.children[0];
+            console.log(text.getAttribute('data-infoImgSrc'));
+
+            document.getElementById("infoImg").src = text.getAttribute('data-infoImgSrc');
+
+            document.getElementById("testtext").innerText = text.getAttribute('data-textValue');
+
+        });
+
+    }
+});
+
+
+
 AFRAME.registerComponent('registerevents', {
     init: function () {
         var marker = this.el;
@@ -37,6 +58,7 @@ AFRAME.registerComponent('registerevents', {
             var markerId = marker.id;
             console.log('markerFound', markerId);
             text = marker.children[0];
+            console.log(text.getAttribute('data-infoImgSrc'));
 
             document.getElementById("infoImg").src = text.getAttribute('data-infoImgSrc');
 
