@@ -12,6 +12,7 @@ body {
     height: 90%;
     width: 90%;
     overflow: hidden;
+    display: none;
     opacity: 0.8;
     text-align: center;
     background-color: #000000;
