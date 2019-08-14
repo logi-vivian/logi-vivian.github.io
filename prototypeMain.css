@@ -20,7 +20,9 @@ body {
 
 }
 
-
+#infoImg {
+    width: 100%;
+}
 #modal {
     position: absolute;
     top: 5%;
