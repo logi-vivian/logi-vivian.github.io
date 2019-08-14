@@ -66,7 +66,7 @@
     <!--    SUPPORT-->
 
     <a-marker type='barcode' value='0' >
-        <a-text id="text_three" data-infoImgSrc="support.gif" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-text  data-infoImgSrc="support.gif" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>
 
         <a-circle onclick="directTo(0)" animation="property: scale; to: 1.2 1.2 1.2; loop: true; dur: 5000;"src="#support" radius="1" rotation="-90 0 0"></a-circle>
 
@@ -87,7 +87,7 @@
 
     <a-marker type='barcode' value='1'>
 
-        <a-text id="text_one" data-infoImgSrc="onboarding1.gif" data-textValue="Battery removal" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-text  data-infoImgSrc="onboarding1.gif" data-textValue="Battery removal" font="roboto" material='opacity: 0.5;'></a-text>
         <a-box position='0 0.5 0' color="#00eeee" opacity="0.5"></a-box>
         <a-box animation="property: color; to: #ff0000; loop:true; dur:5000" position='1.2 0.5 0' color="#00eeee" opacity="0.2"></a-box>
         <a-box animation="property: color; to: #ffff00; loop:true; dur:5000" position='-1.2 0.5 0' color="#00eeee" opacity="0.2"></a-box>
@@ -99,7 +99,7 @@
     <!--NEARBY RECYCLING-->
 
     <a-marker type='barcode' value='2' registerevents>
-        <a-text id="text_three" data-infoImgSrc="onboarding1.gif" data-textValue="Nearest recycling centers" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-text  data-infoImgSrc="onboarding1.gif" data-textValue="Nearest recycling centers" font="roboto" material='opacity: 0.5;'></a-text>
         <a-entity animation__scale="property: scale; dir: alternate; dur: 2000;
                       easing: easeInSine; loop: true; to: 0.005 0.005 0.005" gltf-model="#monitor"  rotation= "0 20 0 " position="0 0 0" scale="0.003 0.003 0.003"></a-entity>
 
@@ -109,7 +109,7 @@
 <!--SPARE-->
 
     <a-marker type='barcode' value='3'>
-        <a-text id="text_three" data-infoImgSrc="spareparts.gif" data-textValue="Get Spare Parts" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-text data-infoImgSrc="spareparts.gif" data-textValue="Get Spare Parts" font="roboto" material='opacity: 0.5;'></a-text>
         <a-circle onclick="directTo(1)" animation="property: scale; to: 1.2 1.2 1.2; loop: true;"src="#spareparts" radius="1" rotation="-90 0 0"></a-circle>-->
 
     </a-marker>
@@ -120,7 +120,7 @@
 
 <!--LEARN-->
     <a-marker type='barcode' value='4' >
-        <a-text onclick="directTo(2)" id="text_three" data-infoImgSrc="onboarding1.gif" data-textValue="Learn more!" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-text onclick="directTo(2)" data-infoImgSrc="onboarding1.gif" data-textValue="Learn more!" font="roboto" material='opacity: 0.5;'></a-text>
         <a-box></a-box>
     </a-marker>
 
