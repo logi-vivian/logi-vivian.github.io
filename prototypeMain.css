@@ -13,7 +13,7 @@ body {
     width: 90%;
     overflow: hidden;
     display: none;
-    opacity: 0.8;
+    opacity: 0.25;
     text-align: center;
     background-color: #000000;
     z-index: 1;

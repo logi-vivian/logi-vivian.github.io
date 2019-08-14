@@ -26,8 +26,8 @@
 
 <div id="map"></div>
 <div id="modal">
-    <p id="testtext">Point your phone over the Logi sticker.</p>
-    <img id="infoImg" src="./onboarding0.gif">
+    <p id="testtext">Point your phone over the first marker.</p>
+    <img id="infoImg" src="./logitechG.gif">
 
 </div>
 
@@ -37,10 +37,10 @@
 <a-scene id="scene" cursor="rayOrigin: mouse" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
     <!--SCENE ASSETS -->
 
-    <a-assets>
-        <a-asset-item id="particlesJson" src="./particles-fireworks.json"></a-asset-item>
-        <img src="./sprite.png" id="particleTex">
-    </a-assets>
+<!--    <a-assets>-->
+<!--        <a-asset-item id="particlesJson" src="./particles-fireworks.json"></a-asset-item>-->
+<!--        <img src="./sprite.png" id="particleTex">-->
+<!--    </a-assets>-->
 
 
     <a-assets>
@@ -66,7 +66,7 @@
     <!--    SUPPORT-->
 
     <a-marker type='barcode' value='0' >
-        <a-text id="text_three" data-infoImgSrc="onboarding1.gif" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-text id="text_three" data-infoImgSrc="support.gif" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>
 
         <a-circle onclick="directTo(0)" animation="property: scale; to: 1.2 1.2 1.2; loop: true; dur: 5000;"src="#support" radius="1" rotation="-90 0 0"></a-circle>
 
@@ -109,7 +109,7 @@
 <!--SPARE-->
 
     <a-marker type='barcode' value='3'>
-        <a-text id="text_three" data-infoImgSrc="onboarding1.gif" data-textValue="Get Spare Parts" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-text id="text_three" data-infoImgSrc="spareparts.gif" data-textValue="Get Spare Parts" font="roboto" material='opacity: 0.5;'></a-text>
         <a-circle onclick="directTo(1)" animation="property: scale; to: 1.2 1.2 1.2; loop: true;"src="#spareparts" radius="1" rotation="-90 0 0"></a-circle>-->
 
     </a-marker>
