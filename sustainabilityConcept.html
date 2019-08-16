@@ -15,16 +15,16 @@
 <!--<script src="https://unpkg.com/aframe-particleplayer-component/dist/aframe-particleplayer-component.min.js"></script>-->
 
 <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
-<!--<script src="./initializeMap.js"></script>-->
+<script src="./initializeMap.js"></script>
 <script src="./aframeRegistration.js">
 
 
 </script>
 
 
-<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS35U6_6_LwZCpeeRSid3qs2opoydzo8E&libraries=places&callback=initMap" async defer></script>-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS35U6_6_LwZCpeeRSid3qs2opoydzo8E&libraries=places&callback=initMap" async defer></script>
 
-<!--<div id="map"></div>-->
+<div id="map"></div>
 <div id="modal">
     <p id="testtext">Point your phone over the first marker.</p>
     <img id="infoImg" src="./logitechG.gif">
@@ -145,15 +145,15 @@
 
     <!--NEARBY RECYCLING-->
 
-<!--    <a-marker type='barcode' value='2'>-->
-<!--        <a-text  data-infoImgSrc="logitechG.gif" data-textValue="Nearest recycling centers" font="roboto" material='opacity: 0.5;'></a-text>-->
-<!--        <a-entity animation__scale="property: scale; dir: alternate; dur: 2000;-->
-<!--                      easing: easeInSine; loop: true; to: 0.005 0.005 0.005" gltf-model="#monitor"  rotation= "0 20 0 " position="0 0 0" scale="0.003 0.003 0.003"></a-entity>-->
+    <a-marker type='barcode' value='2' registerevents>
+        <a-text  data-infoImgSrc="logitechG.gif" data-textValue="Nearest recycling centers" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-entity animation__scale="property: scale; dir: alternate; dur: 2000;
+                      easing: easeInSine; loop: true; to: 0.005 0.005 0.005" gltf-model="#monitor"  rotation= "0 20 0 " position="0 0 0" scale="0.003 0.003 0.003"></a-entity>
 
-<!--    </a-marker>-->
+    </a-marker>
 
 
-    <!--SPARE-->
+    SPARE
 
     <a-marker type='barcode' value='3'>
         <a-text data-infoImgSrc="spareparts.gif" data-textValue="Get Spare Parts" font="roboto" material='opacity: 0.5;'></a-text>
