@@ -108,6 +108,7 @@ function initMap() {
             for (var i = 0; i < results.length; i++) {
                 console.log(results[i])
                 createMarker(results[i]);
+
             }
 
             map.setCenter(results[0].geometry.location);
@@ -118,11 +119,16 @@ function initMap() {
 function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
-        position: place.geometry.location
+        position: place.geometry.location,
+
     });
+
 
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(place.name);
+
+
+        console.log(place.name);
         infowindow.open(map, this);
     });
 }
