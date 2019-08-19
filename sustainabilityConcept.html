@@ -113,10 +113,6 @@
         <a-asset-item id="battery1" src="./gltfs/battery1.gltf" ></a-asset-item>
     </a-assets>
 
-    <a-assets>
-        <audio id="recyclingnearyou" src="recyclingnearyou.mp3" preload="auto"></audio>
-    </a-assets>
-
 
 <!--        SUPPORT-->
 
@@ -132,7 +128,7 @@
 
 
 
-    ]<!--BATTERIES -->
+    <!--BATTERIES -->
 
     <a-marker id="recycle" type='barcode' value='1'>
         <a-text  data-infoImgSrc="" data-textValue="Battery Removal Best Practices" font="roboto"></a-text>
@@ -150,9 +146,8 @@
 
     <!--NEARBY RECYCLING-->
 
-    <a-marker type='barcode' value='2'  data-name="recycle" >
+    <a-marker type='barcode' value='2'  data-name="recycle" registerevents>
         <a-text  data-infoImgSrc="" data-textValue="NEARBY RECYCLING" font="roboto"></a-text>
-        <a-sound  src=“#recyclingnearyou" autoplay="true"></a-sound>
 
     </a-marker>
 
