@@ -127,12 +127,12 @@
 
     <!--NEARBY RECYCLING-->
 
-    <!--    <a-marker type='barcode' value='2'>-->
-    <!--        <a-text  data-infoImgSrc="logitechG.gif" data-textValue="Nearest recycling centers" font="roboto" material='opacity: 0.5;'></a-text>-->
-    <!--        <a-entity animation__scale="property: scale; dir: alternate; dur: 2000;-->
-    <!--                      easing: easeInSine; loop: true; to: 0.005 0.005 0.005" gltf-model="#monitor"  rotation= "0 20 0 " position="0 0 0" scale="0.003 0.003 0.003"></a-entity>-->
+        <a-marker type='barcode' value='2' >
+            <a-text  data-infoImgSrc="logitechG.gif" data-textValue="Nearest recycling centers" font="roboto" material='opacity: 0.5;'></a-text>
+            <a-entity animation__scale="property: scale; dir: alternate; dur: 2000;
+                          easing: easeInSine; loop: true; to: 0.005 0.005 0.005" gltf-model="#monitor"  rotation= "0 20 0 " position="0 0 0" scale="0.003 0.003 0.003"></a-entity>
 
-    <!--    </a-marker>-->
+        </a-marker>
 
 
     <!--SPARE-->
@@ -158,7 +158,7 @@
     <!--    </a-marker>-->
 
 
-    <a-gltf-model  autoscale position="0 0 0" src="#battery" ></a-gltf-model>
+    <a-gltf-model  scale="0.02 0.002 0.002" src="#battery" ></a-gltf-model>
 
     <a-entity camera></a-entity>
 

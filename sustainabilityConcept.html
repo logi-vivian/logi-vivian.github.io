@@ -27,14 +27,14 @@
 <div id="map"></div>
 <div id="modal">
     <p id="testtext">Point your phone over the first marker.</p>
-    <img id="infoImg" src="./logitechG.gif">
+    <img id="infoImg" src="">
 
 </div>
 
 
 
 
-<a-scene id="scene" cursor="rayOrigin: mouse" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+<a-scene  foo id="scene" cursor="rayOrigin: mouse" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
     <!--SCENE ASSETS -->
 
     <!--    <a-assets>-->
@@ -81,8 +81,24 @@
         <img id="usbcable" src="./overlay_usbcable.png">
     </a-assets>
 
+
     <a-assets>
         <img id="supportOverlay" src="./support_overlay.png">
+    </a-assets>
+
+    <a-assets>
+        <img id="supportstep1" src="./overlay_supportstep1.png">
+    </a-assets>
+    <a-assets>
+        <img id="supportstep2" src="./overlay_supportstep2.png">
+    </a-assets>
+    <a-assets>
+        <img id="supportstep3" src="./overlay_supportstep3.png">
+    </a-assets>
+
+
+    <a-assets>
+        <img id="overlay_battery" src="./overlay_battery.png">
     </a-assets>
 
 
@@ -90,79 +106,64 @@
         <a-asset-item id="monitor" src="./monitor/Monitor.gltf" scale="0.000001 0.000001 0.000001"></a-asset-item>
     </a-assets>
 
+    <a-assets>
+        <a-asset-item id="keyboard1" src="./gltfs/keyboard1.gltf" ></a-asset-item>
+    </a-assets>
+    <a-assets>
+        <a-asset-item id="battery1" src="./gltfs/battery1.gltf" ></a-asset-item>
+    </a-assets>
 
-    <!--    <a-entity position="0 1 -5"-->
-    <!--              trigger-->
-    <!--              particleplayer="src: #particlesJson; img: #particleTex; dur: 4000; count: 50%; scale: 0.6; pscale: 1; interpolate: true; shader: standard; poolSize: 10"></a-entity>-->
-
-    <!--    <a-entity position="0 1 -5"-->
-    <!--              trigger-->
-    <!--              particleplayer="src: #particlesJson; img: #particleTex; dur: 4000; count: 50%; scale: 0.6; pscale: 1; interpolate: true; shader: standard; poolSize: 10"></a-entity>-->
-
-    <!--    SUPPORT-->
-
-<!--    <a-marker type='barcode' value='0'>-->
-<!--        <a-text  data-infoImgSrc="support.gif" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>-->
-<!--        <a-image src="#supportOverlay" position="0 5 0" rotation="0 0 0" scale="3 3 3"></a-image>-->
-<!--        <a-image src="#profileassign" position="2 5 0" rotation="0 0 0" scale="2 2 2"></a-image>-->
-<!--        <a-image src="#connection" position="-2 5 0" rotation="0 0 0" scale="2 2 2"></a-image>-->
-<!--        <a-image src="#profileassign" position="0 7 0" rotation="0 0 0" scale="2 2 2"></a-image>-->
-<!--        <a-image src="#connection" position="0 3 0" rotation="0 0 0" scale="2 2 2"></a-image>-->
+    <a-assets>
+        <audio id="recyclingnearyou" src="recyclingnearyou.mp3" preload="auto"></audio>
+    </a-assets>
 
 
-<!--        &lt;!&ndash;        <a-circle onclick="directTo(0)" animation="property: scale; to: 1.2 1.2 1.2; loop: true; dur: 5000;"src="#support" radius="1" rotation="-90 0 0"></a-circle>&ndash;&gt;-->
-<!--        <a-light animation="property:position; to: 0 3 1; loop: true; dur: 5000; " type="point" color="blue" position="0 5 0"></a-light>-->
-<!--        <a-light animation="property:position; to: 2 0 1; loop: true; dur: 5000; " type="point" color="red" position="3 0 2"></a-light>-->
+<!--        SUPPORT-->
+
+    <a-marker type='barcode' value='0'>
+        <a-text  data-infoImgSrc="support.gif" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-link href="tel:+6464543200"><a-image src="#supportOverlay" position="0 5 0" rotation="0 0 0" scale="3 3 3"></a-image></a>
+        <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true;" src="#supportstep1" position="-3 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
+        <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true; delay: 3000;"  src="#supportstep2" position="0 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
+        <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true; delay: 6000;"  src="#supportstep3" position="3 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
 
 
-<!--    </a-marker>-->
+    </a-marker>
 
-    <!--LOGI-->
-    <!--    <a-marker preset='custom'  type="pattern" url="./custom_markers2/pattern-logi.patt">-->
-    <!--        <a-text id="text_one" data-infoImgSrc="onboarding1.gif" data-textValue="Welcome to G910!" font="roboto" material='opacity: 0.5;'></a-text>-->
-    <!--        <a-box position='0 0.5 0' color="#00eeee" opacity="0.5"></a-box>-->
-    <!--        <a-box animation="property: color; to: #ff0000; loop:true; dur:5000" position='1.2 0.5 0' color="#00eeee" opacity="0.2"></a-box>-->
-    <!--        <a-box animation="property: color; to: #ffff00; loop:true; dur:5000" position='-1.2 0.5 0' color="#00eeee" opacity="0.2"></a-box>-->
-    <!--        <a-box animation="property: color; to: #ffffff; loop:true; dur:5000" position='0 0.5 1.2' color="#00eeee" opacity="0.2"></a-box>-->
 
-    <!--    </a-marker>-->
 
     ]<!--BATTERIES -->
 
-    <a-marker type='barcode' value='1'>
+    <a-marker id="recycle" type='barcode' value='1'>
+        <a-text  data-infoImgSrc="" data-textValue="Battery Removal Best Practices" font="roboto"></a-text>
+        <a-entity gltf-model="#keyboard1" scale="10 10 10"  position="0 5 0" animation="property: rotation; to: 0 0 -90;  dur: 5000">
 
-<!--        <a-text  data-infoImgSrc="mice_exploded.gif" data-textValue="Battery removal" font="roboto" material='opacity: 0.5;'></a-text>-->
-<!--        <a-entity geometry="primitive:plane;width:2;height:2;" position="-1.2 2.375 -1" material="shader:gif;src:url(spareparts.gif);color:orange;"></a-entity>-->
+        </a-entity>
+        <a-entity  gltf-model="#battery1"  id="battery" scale="10 10 10"  position="0 5.5 0" animation="property: position; to: 0 5.75 0 ; loop:true; delay: 3000; dir: alternate; dur: 2000;">
+        </a-entity>
+
+        <a-image animation="property: visible; to: true; delay: 5000;"  visible="false"  src="#overlay_battery" position="0.7 5.5 0" scale="2 2 2"></a-image>
 
 
-        <!--        <a-box position='0 0.5 0' color="#00eeee" opacity="0.5"></a-box>-->
-<!--        <a-box animation="property: color; to: #ff0000; loop:true; dur:5000" position='1.2 0.5 0' color="#00eeee" opacity="0.2"></a-box>-->
-<!--        <a-box animation="property: color; to: #ffff00; loop:true; dur:5000" position='-1.2 0.5 0' color="#00eeee" opacity="0.2"></a-box>-->
-<!--        <a-box animation="property: color; to: #ffffff; loop:true; dur:5000" position='0 0.5 1.2' color="#00eeee" opacity="0.2"></a-box>-->
-<!--        <a-entity-->
 
     </a-marker>
 
     <!--NEARBY RECYCLING-->
 
-    <a-marker type='barcode' value='2' registerevents>
-        <a-text  data-infoImgSrc="logitechG.gif" data-textValue="Nearest recycling centers" font="roboto" material='opacity: 0.5;'></a-text>
-        <a-entity animation__scale="property: scale; dir: alternate; dur: 2000;
-                      easing: easeInSine; loop: true; to: 0.005 0.005 0.005" gltf-model="#monitor"  rotation= "0 20 0 " position="0 0 0" scale="0.003 0.003 0.003"></a-entity>
+    <a-marker type='barcode' value='2'  data-name="recycle" >
+        <a-text  data-infoImgSrc="" data-textValue="NEARBY RECYCLING" font="roboto"></a-text>
+        <a-sound  src=“#recyclingnearyou" autoplay="true"></a-sound>
 
     </a-marker>
 
 
-    SPARE
-
     <a-marker type='barcode' value='3'>
         <a-text data-infoImgSrc="spareparts.gif" data-textValue="Get Spare Parts" font="roboto" material='opacity: 0.5;'></a-text>
-<!--        <a-circle onclick="directTo(1)" animation="property: scale; to: 1.2 1.2 1.2; loop: true;"src="#spareparts" radius="1" rotation="-90 0 0"></a-circle>&ndash;&gt;-->
-        <a-image onclick="directTo(1)" src="#spareparts" position="0 5 0" rotation="0 0 0" scale="3 3 3"></a-image>
-        <a-image onclick="directTo(3)" src="#receiver" position="3 5 0" rotation="0 0 0" scale="2 2 2"></a-image>
-        <a-image  onclick="directTo(4)" src="#stand" position="-3 5 0" rotation="0 0 0" scale="2 2 2"></a-image>
-        <a-image  onclick="directTo(5)" src="#tiltlegs" position="0 8 0" rotation="0 0 0" scale="2 2 2"></a-image>
-        <a-image onclick="directTo(6)" src="#usbcable" position="0 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
+<<a-image animation="property: rotation; to: 0 360 0; loop:true; dur: 5000;" onclick="directTo(1)" src="#spareparts" position="0 5 0" rotation="0 0 0" scale="3 3 3"></a-image>
+        <a-image animation="property: scale; to: 3 3 3; loop:true; dur: 5000; dir: alternate;"  onclick="directTo(3)" src="#receiver" position="3 5 0" rotation="0 0 0" scale="2 2 2"></a-image>
+        <a-image animation="property: scale; to: 3 3 3; loop:true; dur: 5000; dir:alternate;"  onclick="directTo(4)" src="#stand" position="-3 5 0" rotation="0 0 0" scale="2 2 2"></a-image>
+        <a-image animation="property: scale; to: 3 3 3; loop:true; dur: 5000; dir:alternate;"  onclick="directTo(5)" src="#tiltlegs" position="0 8 0" rotation="0 0 0" scale="2 2 2"></a-image>
+        <a-image animation="property: scale; to: 3 3 3; loop:true; dur: 5000; dir: alternate;"  onclick="directTo(6)" src="#usbcable" position="0 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
 
 
     </a-marker>
