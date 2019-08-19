@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link href="./prototypeMain.css" rel="stylesheet">
+
+</head>
+<body>
+
+<script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+<script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+<!--<script src="https://unpkg.com/aframe-particleplayer-component/dist/aframe-particleplayer-component.min.js"></script>-->
+
+<script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+<script src="./initializeMap.js"></script>
+<script src="./aframeRegistration.js">
+
+
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS35U6_6_LwZCpeeRSid3qs2opoydzo8E&libraries=places&callback=initMap" async defer></script>
+
+<div id="map"></div>
+<div id="modal">
+    <p id="testtext">Point your phone over the first marker.</p>
+    <img id="infoImg" src="">
+
+</div>
+
+
+
+
+<a-scene  foo id="scene" cursor="rayOrigin: mouse" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
+    <!--SCENE ASSETS -->
+
+    <!--    <a-assets>-->
+    <!--        <a-asset-item id="particlesJson" src="./particles-fireworks.json"></a-asset-item>-->
+    <!--        <img src="./sprite.png" id="particleTex">-->
+    <!--    </a-assets>-->
+
+
+    <a-assets>
+        <img id="spareparts" src="./overlay_spareparts.png">
+    </a-assets>
+
+    <a-assets>
+        <img id="support" src="./support.png">
+    </a-assets>
+
+
+    <a-assets>
+        <img id="connection" src="./overlay_connection.png">
+    </a-assets>
+
+    <a-assets>
+        <img id="profileassign" src="./overlay_profileassign.png">
+    </a-assets>
+
+    <a-assets>
+        <img id="spareparts" src="./overlay_spareparts.png">
+    </a-assets>
+
+
+    <a-assets>
+        <img id="receiver" src="./overlay_receiver.png">
+    </a-assets>
+
+    <a-assets>
+        <img id="stand" src="./overlay_stand.png">
+    </a-assets>
+
+    <a-assets>
+        <img id="tiltlegs" src="./overlay_tiltlegs.png">
+    </a-assets>
+
+    <a-assets>
+        <img id="usbcable" src="./overlay_usbcable.png">
+    </a-assets>
+
+
+    <a-assets>
+        <img id="supportOverlay" src="./support_overlay.png">
+    </a-assets>
+
+    <a-assets>
+        <img id="supportstep1" src="./overlay_supportstep1.png">
+    </a-assets>
+    <a-assets>
+        <img id="supportstep2" src="./overlay_supportstep2.png">
+    </a-assets>
+    <a-assets>
+        <img id="supportstep3" src="./overlay_supportstep3.png">
+    </a-assets>
+
+
+    <a-assets>
+        <img id="overlay_battery" src="./overlay_battery.png">
+    </a-assets>
+
+
+    <a-assets>
+        <a-asset-item id="monitor" src="./monitor/Monitor.gltf" scale="0.000001 0.000001 0.000001"></a-asset-item>
+    </a-assets>
+
+    <a-assets>
+        <a-asset-item id="keyboard1" src="./gltfs/keyboard1.gltf" ></a-asset-item>
+    </a-assets>
+    <a-assets>
+        <a-asset-item id="battery1" src="./gltfs/battery1.gltf" ></a-asset-item>
+    </a-assets>
+
+    <a-assets>
+        <audio id="recyclingnearyou" src="recyclingnearyou.mp3" preload="auto"></audio>
+    </a-assets>
+
+
+    <!--        SUPPORT-->
+
+    <a-marker type='barcode' value='0'>
+        <a-text  data-infoImgSrc="support.gif" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-link href="tel:+6464543200"><a-image src="#supportOverlay" position="0 5 0" rotation="0 0 0" scale="3 3 3"></a-image></a>
+            <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true;" src="#supportstep1" position="-3 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
+            <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true; delay: 3000;"  src="#supportstep2" position="0 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
+            <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true; delay: 6000;"  src="#supportstep3" position="3 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
+
+
+    </a-marker>
+
+
+
+    ]<!--BATTERIES -->
+
+    <a-marker id="recycle" type='barcode' value='1'>
+        <a-text  data-infoImgSrc="" data-textValue="Battery Removal Best Practices" font="roboto"></a-text>
+        <a-entity gltf-model="#keyboard1" scale="10 10 10"  position="0 5 0" animation="property: rotation; to: 0 0 -90;  dur: 5000">
+
+        </a-entity>
+        <a-entity  gltf-model="#battery1"  id="battery" scale="10 10 10"  position="0 5.5 0" animation="property: position; to: 0 5.75 0 ; loop:true; delay: 3000; dir: alternate; dur: 2000;">
+        </a-entity>
+
+        <a-image animation="property: visible; to: true; delay: 5000;"  visible="false"  src="#overlay_battery" position="0.7 5.5 0" scale="2 2 2"></a-image>
+
+
+
+    </a-marker>
+
+    <!--NEARBY RECYCLING-->
+
+    <a-marker type='barcode' value='2'  data-name="recycle" >
+        <a-text  data-infoImgSrc="" data-textValue="NEARBY RECYCLING" font="roboto"></a-text>
+        <a-sound  src=“#recyclingnearyou" autoplay="true"></a-sound>
+
+    </a-marker>
+
+
+    <a-marker type='barcode' value='3'>
+        <a-text data-infoImgSrc="spareparts.gif" data-textValue="Get Spare Parts" font="roboto" material='opacity: 0.5;'></a-text>
+        <<a-image animation="property: rotation; to: 0 360 0; loop:true; dur: 5000;" onclick="directTo(1)" src="#spareparts" position="0 5 0" rotation="0 0 0" scale="3 3 3"></a-image>
+        <a-image animation="property: scale; to: 3 3 3; loop:true; dur: 5000; dir: alternate;"  onclick="directTo(3)" src="#receiver" position="3 5 0" rotation="0 0 0" scale="2 2 2"></a-image>
+        <a-image animation="property: scale; to: 3 3 3; loop:true; dur: 5000; dir:alternate;"  onclick="directTo(4)" src="#stand" position="-3 5 0" rotation="0 0 0" scale="2 2 2"></a-image>
+        <a-image animation="property: scale; to: 3 3 3; loop:true; dur: 5000; dir:alternate;"  onclick="directTo(5)" src="#tiltlegs" position="0 8 0" rotation="0 0 0" scale="2 2 2"></a-image>
+        <a-image animation="property: scale; to: 3 3 3; loop:true; dur: 5000; dir: alternate;"  onclick="directTo(6)" src="#usbcable" position="0 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
+
+
+    </a-marker>
+
+
+
+    <!--LEARN-->
+    <!--    <a-marker type='barcode' value='4'>-->
+    <!--        <a-text onclick="directTo(2)" data-infoImgSrc="onboarding1.gif" data-textValue="Learn more!" font="roboto" material='opacity: 0.5;'></a-text>-->
+    <!--        <a-box></a-box>-->
+    <!--    </a-marker>-->
+
+
+
+    <a-entity camera></a-entity>
+
+</a-scene>
+
+</body>
+</html>
