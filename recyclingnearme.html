@@ -13,14 +13,6 @@
 <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
 
-<script src="./initializeMap.js"></script>
-<script src="./aframeRegistration.js">
-
-
-</script>
-
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS35U6_6_LwZCpeeRSid3qs2opoydzo8E&libraries=places&callback=initMap" async defer></script>
 
 <div id="map"></div>
 <div id="modal">
@@ -49,9 +41,6 @@
     </a-assets>
 
 
-
-
-
     <!--BATTERIES -->
 
     <a-marker id="recycle" type='barcode' value='1'>
@@ -67,22 +56,6 @@
 
 
     </a-marker>
-
-    <!--NEARBY RECYCLING-->
-
-    <a-marker type='barcode' value='2'  data-name="recycle" registerevents>
-        <a-text  data-infoImgSrc="" data-textValue="NEARBY RECYCLING" font="roboto"></a-text>
-
-    </a-marker>
-
-
-
-    <!--LEARN-->
-    <!--    <a-marker type='barcode' value='4'>-->
-    <!--        <a-text onclick="directTo(2)" data-infoImgSrc="onboarding1.gif" data-textValue="Learn more!" font="roboto" material='opacity: 0.5;'></a-text>-->
-    <!--        <a-box></a-box>-->
-    <!--    </a-marker>-->
-
 
 
     <a-entity camera></a-entity>
