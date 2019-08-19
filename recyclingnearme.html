@@ -13,10 +13,13 @@
 <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 <script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
 
+<script>
+    THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/';
 
-<div id="map"></div>
+</script>
+
 <div id="modal">
-    <p id="testtext">Hover over the markers for RECYCLE BATTERIES and RECYCLE ELECTRONICS.</p>
+    <p id="testtext">Hover over the markers for RECYCLE BATTERIES</p>
     <img id="infoImg" src="">
 
 </div>
@@ -32,10 +35,10 @@
     </a-assets>
 
 
-
     <a-assets>
         <a-asset-item id="keyboard1" src="./gltfs/keyboard1.gltf" ></a-asset-item>
     </a-assets>
+
     <a-assets>
         <a-asset-item id="battery1" src="./gltfs/battery1.gltf" ></a-asset-item>
     </a-assets>
