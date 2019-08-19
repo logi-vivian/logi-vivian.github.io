@@ -118,43 +118,43 @@
     </a-assets>
 
 
-    <!--        SUPPORT-->
+<!--    &lt;!&ndash;        SUPPORT&ndash;&gt;-->
 
-    <a-marker type='barcode' value='0'>
-        <a-text  data-infoImgSrc="support.gif" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>
-        <a-link href="tel:+6464543200"><a-image src="#supportOverlay" position="0 5 0" rotation="0 0 0" scale="3 3 3"></a-image></a>
-            <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true;" src="#supportstep1" position="-3 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
-            <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true; delay: 3000;"  src="#supportstep2" position="0 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
-            <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true; delay: 6000;"  src="#supportstep3" position="3 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
-
-
-    </a-marker>
+<!--    <a-marker type='barcode' value='0'>-->
+<!--        <a-text  data-infoImgSrc="support.gif" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>-->
+<!--        <a-link href="tel:+6464543200"><a-image src="#supportOverlay" position="0 5 0" rotation="0 0 0" scale="3 3 3"></a-image></a>-->
+<!--            <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true;" src="#supportstep1" position="-3 2 0" rotation="0 0 0" scale="2 2 2"></a-image>-->
+<!--            <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true; delay: 3000;"  src="#supportstep2" position="0 2 0" rotation="0 0 0" scale="2 2 2"></a-image>-->
+<!--            <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true; delay: 6000;"  src="#supportstep3" position="3 2 0" rotation="0 0 0" scale="2 2 2"></a-image>-->
 
 
-
-    ]<!--BATTERIES -->
-
-    <a-marker id="recycle" type='barcode' value='1'>
-        <a-text  data-infoImgSrc="" data-textValue="Battery Removal Best Practices" font="roboto"></a-text>
-        <a-entity gltf-model="#keyboard1" scale="10 10 10"  position="0 5 0" animation="property: rotation; to: 0 0 -90;  dur: 5000">
-
-        </a-entity>
-        <a-entity  gltf-model="#battery1"  id="battery" scale="10 10 10"  position="0 5.5 0" animation="property: position; to: 0 5.75 0 ; loop:true; delay: 3000; dir: alternate; dur: 2000;">
-        </a-entity>
-
-        <a-image animation="property: visible; to: true; delay: 5000;"  visible="false"  src="#overlay_battery" position="0.7 5.5 0" scale="2 2 2"></a-image>
+<!--    </a-marker>-->
 
 
 
-    </a-marker>
+<!--    ]&lt;!&ndash;BATTERIES &ndash;&gt;-->
 
-    <!--NEARBY RECYCLING-->
+<!--    <a-marker id="recycle" type='barcode' value='1'>-->
+<!--        <a-text  data-infoImgSrc="" data-textValue="Battery Removal Best Practices" font="roboto"></a-text>-->
+<!--        <a-entity gltf-model="#keyboard1" scale="10 10 10"  position="0 5 0" animation="property: rotation; to: 0 0 -90;  dur: 5000">-->
 
-    <a-marker type='barcode' value='2'  data-name="recycle" >
-        <a-text  data-infoImgSrc="" data-textValue="NEARBY RECYCLING" font="roboto"></a-text>
-        <a-sound  src=“#recyclingnearyou" autoplay="true"></a-sound>
+<!--        </a-entity>-->
+<!--        <a-entity  gltf-model="#battery1"  id="battery" scale="10 10 10"  position="0 5.5 0" animation="property: position; to: 0 5.75 0 ; loop:true; delay: 3000; dir: alternate; dur: 2000;">-->
+<!--        </a-entity>-->
 
-    </a-marker>
+<!--        <a-image animation="property: visible; to: true; delay: 5000;"  visible="false"  src="#overlay_battery" position="0.7 5.5 0" scale="2 2 2"></a-image>-->
+
+
+
+<!--    </a-marker>-->
+
+<!--    &lt;!&ndash;NEARBY RECYCLING&ndash;&gt;-->
+
+<!--    <a-marker type='barcode' value='2'  data-name="recycle" >-->
+<!--        <a-text  data-infoImgSrc="" data-textValue="NEARBY RECYCLING" font="roboto"></a-text>-->
+<!--        <a-sound  src=“#recyclingnearyou" autoplay="true"></a-sound>-->
+
+<!--    </a-marker>-->
 
 
     <a-marker type='barcode' value='3'>
