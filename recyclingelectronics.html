@@ -35,38 +35,8 @@
 <a-scene  id="scene" cursor="rayOrigin: mouse" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
 
 
-    <a-assets>
-        <img id="overlay_battery" src="./overlay_battery.png">
-    </a-assets>
 
 
-
-    <a-assets>
-        <a-asset-item id="keyboard1" src="./gltfs/keyboard1.gltf" ></a-asset-item>
-    </a-assets>
-    <a-assets>
-        <a-asset-item id="battery1" src="./gltfs/battery1.gltf" ></a-asset-item>
-    </a-assets>
-
-
-
-
-
-    <!--BATTERIES -->
-
-    <a-marker id="recycle" type='barcode' value='1'>
-        <a-text  data-infoImgSrc="" data-textValue="Battery Removal Best Practices" font="roboto"></a-text>
-        <a-entity gltf-model="#keyboard1" scale="10 10 10"  position="0 5 0" animation="property: rotation; to: 0 0 -90;  dur: 5000">
-
-        </a-entity>
-        <a-entity  gltf-model="#battery1"  id="battery" scale="10 10 10"  position="0 5.5 0" animation="property: position; to: 0 5.75 0 ; loop:true; delay: 3000; dir: alternate; dur: 2000;">
-        </a-entity>
-
-        <a-image animation="property: visible; to: true; delay: 5000;"  visible="false"  src="#overlay_battery" position="0.7 5.5 0" scale="2 2 2"></a-image>
-
-
-
-    </a-marker>
 
     <!--NEARBY RECYCLING-->
 
@@ -75,13 +45,6 @@
 
     </a-marker>
 
-
-
-    <!--LEARN-->
-    <!--    <a-marker type='barcode' value='4'>-->
-    <!--        <a-text onclick="directTo(2)" data-infoImgSrc="onboarding1.gif" data-textValue="Learn more!" font="roboto" material='opacity: 0.5;'></a-text>-->
-    <!--        <a-box></a-box>-->
-    <!--    </a-marker>-->
 
 
 
