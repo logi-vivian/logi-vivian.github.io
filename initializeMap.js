@@ -127,10 +127,9 @@ function createMarker(place) {
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(place.name);
 
-
-        console.log(place.name);
         infowindow.open(map, this);
     });
+
 }
 
 function regenerateMat() {
