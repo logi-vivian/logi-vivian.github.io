@@ -54,3 +54,18 @@ a:hover {
     z-index: 0;
 
 }
+#mainmodal {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 5%;
+    left: 5%;
+    height: 90%;
+    width: 90%;
+
+    opacity: 0.4;
+    text-align: center;
+    background-color: #000000;
+    z-index: 0;
+
+}
