@@ -11,7 +11,7 @@
 <body>
 
 <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
-<script src="https://rawgit.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+<script src="https://rawgit.com/jeromeetienne/AR.js/1.7.5/aframe/build/aframe-ar.min.js"></script>
 
 <!--<script src="./initializeMap.js"></script>-->
 <script src="./aframeRegistration.js"></script>
@@ -29,14 +29,12 @@
     <!--SCENE ASSETS -->
 
     <a-assets>
-        <img id="mediacontrols" src="./overlay_mediacontrols.png">
+        <img id="mediacontrols" src="./overlays/overlay_mediacontrols.png">
     </a-assets>
     <!--    SUPPORT-->
 
     <a-marker type='barcode' value='0' >
         <a-text id="text_three" data-infoImgSrc="onboarding0.gif" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>
-
-        <a-circle onclick="directTo(0)" animation="property: scale; to: 1.2 1.2 1.2; loop: true; dur: 5000;"src="#support" radius="1" rotation="-90 0 0"></a-circle>
 
 
     </a-marker>
@@ -53,13 +51,18 @@
 
     ]<!--ONBOARDING 1 -->
 
-    <a-marker type='barcode' value='1'>
+    <a-marker type='barcode' value='1' registerevents>
 
-        <a-text id="text_one" data-infoImgSrc="onboarding1.gif" data-textValue="WASD Keys" font="roboto" material='opacity: 0.5;'></a-text>
-        <a-box position='0 0.5 0' color="#00eeee" opacity="0.5"></a-box>
-        <a-box animation="property: color; to: #ff0000; loop:true; dur:5000" position='1.2 0.5 0' color="#00eeee" opacity="0.2"></a-box>
-        <a-box animation="property: color; to: #ffff00; loop:true; dur:5000" position='-1.2 0.5 0' color="#00eeee" opacity="0.2"></a-box>
-        <a-box animation="property: color; to: #ffffff; loop:true; dur:5000" position='0 0.5 1.2' color="#00eeee" opacity="0.2"></a-box>
+        <a-text id="text_one" data-infoImgSrc="onboarding_gifs/onboarding1.gif" data-textValue="WASD Keys" font="roboto" material='opacity: 0.5;'></a-text>
+
+
+            <a-torus animation="property: rotation; dir: alternate; dur: 2000;
+                      easing: easeInSine; loop: true; to: 90 360 0"  color="#00eeee" arc="270" rotation="90 0 0" radius="0.5" radius-tubular="0.1"></a-torus>
+            <a-torus animation="property: rotation; dir: alternate; dur: 2000;
+                      easing: easeInSine; loop: true; to: 90 360 0"  color="#00eeee" arc="270" rotation="90 0 0" position="0 1 0" radius="0.5" radius-tubular="0.1"></a-torus>
+            <a-torus animation="property: rotation; dir: alternate; dur: 2000;
+                      easing: easeInSine; loop: true; to: 90 360 0"  color="#00eeee" arc="270" rotation="90 0 0" position="0 2 0" radius="0.5" radius-tubular="0.1"></a-torus>
+
 
 
     </a-marker>
@@ -67,7 +70,7 @@
     <!--NEARBY RECYCLING-->
 
     <a-marker type='barcode' value='2' registerevents>
-        <a-text id="text_three" data-infoImgSrc="onboarding2.gif" data-textValue="Nearest recycling centers" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-text id="text_three" data-infoImgSrc="onboarding_gifs/onboarding2.gif" data-textValue="Media controls" font="roboto" material='opacity: 0.5;'></a-text>
         <a-entity animation__scale="property: scale; dir: alternate; dur: 2000;
                       easing: easeInSine; loop: true; to: 0.005 0.005 0.005" gltf-model="#monitor"  rotation= "0 20 0 " position="0 0 0" scale="0.003 0.003 0.003"></a-entity>
 
@@ -76,9 +79,8 @@
 
     <!--SPARE-->
 
-    <a-marker type='barcode' value='3'>
-        <a-text id="text_three" data-infoImgSrc="onboarding3.gif" data-textValue="Get Spare Parts" font="roboto" material='opacity: 0.5;'></a-text>
-        <a-circle onclick="directTo(1)" animation="property: scale; to: 1.2 1.2 1.2; loop: true;"src="#spareparts" radius="1" rotation="-90 0 0"></a-circle>-->
+    <a-marker type='barcode' value='3' registerevents>
+        <a-text id="text_three" data-infoImgSrc="onboarding_gifs/onboarding3.gif" data-textValue="Onboarding" font="roboto" material='opacity: 0.5;'></a-text>
 
     </a-marker>
 
@@ -87,9 +89,7 @@
 
 
     <!--LEARN-->
-    <a-marker type='barcode' value='4' >
-        <a-text onclick="directTo(2)" id="text_three" data-infoImgSrc="onboarding4.gif" data-textValue="Learn more!" font="roboto" material='opacity: 0.5;'></a-text>
-        <a-image  src="#mediacontrols" position="0 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
+    <a-marker type='barcode' value='4' registerevents>
 
     </a-marker>
 
