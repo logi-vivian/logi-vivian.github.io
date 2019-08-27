@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Map</title>
+    <style>
+        .textinput {
+            margin: 20px;
+            position: relative;
+        }
+        #map {
+            height: 60%;
+            display: flex;
+            top: 15%;
+            left: 25%;
+            width: 60%;
+            background-color: white;
+            justify: center;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            font-family: 'Poppins', sans-serif;
+
+
+
+            height: 100%;
+            margin: 0;
+            background-color: black;
+            padding: 0;
+        }
+    </style>
+    <!--    <script type="text/javascript" src="../src/initializeMap.js"></script>-->
+    <script>
+        var map;
+        var service;
+        var infowindow;
+        var lat = 37.539;
+        var long = -122.062;
+
+
+        function initMap() {
+            var start = new google.maps.LatLng(lat, long);
+
+            infowindow = new google.maps.InfoWindow();
+
+            map = new google.maps.Map(
+                document.getElementById('map'), {center: start, zoom: 12,
+                    styles: [
+                        {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+                        {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+                        {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+                        {
+                            featureType: 'administrative.locality',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#d59563'}]
+                        },
+                        {
+                            featureType: 'poi',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#d59563'}]
+                        },
+                        {
+                            featureType: 'poi.park',
+                            elementType: 'geometry',
+                            stylers: [{color: '#263c3f'}]
+                        },
+                        {
+                            featureType: 'poi.park',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#6b9a76'}]
+                        },
+                        {
+                            featureType: 'road',
+                            elementType: 'geometry',
+                            stylers: [{color: '#38414e'}]
+                        },
+                        {
+                            featureType: 'road',
+                            elementType: 'geometry.stroke',
+                            stylers: [{color: '#212a37'}]
+                        },
+                        {
+                            featureType: 'road',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#9ca5b3'}]
+                        },
+                        {
+                            featureType: 'road.highway',
+                            elementType: 'geometry',
+                            stylers: [{color: '#746855'}]
+                        },
+                        {
+                            featureType: 'road.highway',
+                            elementType: 'geometry.stroke',
+                            stylers: [{color: '#1f2835'}]
+                        },
+                        {
+                            featureType: 'road.highway',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#f3d19c'}]
+                        },
+                        {
+                            featureType: 'transit',
+                            elementType: 'geometry',
+                            stylers: [{color: '#2f3948'}]
+                        },
+                        {
+                            featureType: 'transit.station',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#d59563'}]
+                        },
+                        {
+                            featureType: 'water',
+                            elementType: 'geometry',
+                            stylers: [{color: '#17263c'}]
+                        },
+                        {
+                            featureType: 'water',
+                            elementType: 'labels.text.fill',
+                            stylers: [{color: '#515c6d'}]
+                        },
+                        {
+                            featureType: 'water',
+                            elementType: 'labels.text.stroke',
+                            stylers: [{color: '#17263c'}]
+                        }
+                    ]
+
+                });
+
+            var request = {
+                location: start,
+                radius: 10000,
+                keyword: "recycle"
+            };
+
+            service = new google.maps.places.PlacesService(map);
+
+            service.nearbySearch(request, function(results, status) {
+                if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    for (var i = 0; i < results.length; i++) {
+                        console.log(results[i])
+                        createMarker(results[i]);
+                    }
+
+                    map.setCenter(results[0].geometry.location);
+                }
+            });
+        }
+
+        function createMarker(place) {
+            var marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                infowindow.setContent(place.name);
+                infowindow.open(map, this);
+            });
+        }
+
+        function regenerateMat() {
+            lat = document.getElementById("enterLat").value;
+            console.log(lat);
+            long = document.getElementById("enterLong").value;
+            initMap();
+
+        }
+    </script>
+</head>
+
+<body>
+
+<input value="53.349804" class="textinput" id="enterLat" type="text">
+<input value="-6.260310" class="textinput" id="enterLong" type="text">
+<button onclick="regenerateMat()" >Enter info</button>
+
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="map"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS35U6_6_LwZCpeeRSid3qs2opoydzo8E&libraries=places&callback=initMap" async defer></script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+
+
+
+
