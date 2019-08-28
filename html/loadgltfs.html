@@ -85,7 +85,7 @@
 
 <button onclick="goDown()" style="position: absolute; background-color: rgba(0,0,0,0); left: 20%; top: 50%; z-index: 3;">DOWN</button>
 
-<button onclick="registeredClick()" style="position: absolute; background-color: rgba(0,0,0,0); right: 20%; bottom: 20%; z-index: 3;"><img width="150px" src="recyclelogo.png"></button>
+<button onclick="registeredClick()" style="position: absolute; background-color: rgba(0,0,0,0); right: 20%; bottom: 20%; z-index: 3;"><img width="150px" src="../assets/recyclelogo.png"></button>
 
 <script>
     function registeredClick() {
@@ -119,40 +119,34 @@
 
     </a-sky>
     <a-assets>
-        <a-asset-item id="future" src="./gltfs/thelongtomorrow/model.gltf"></a-asset-item>
+        <a-asset-item id="future" src="../gltfs/thelongtomorrow/model.gltf"></a-asset-item>
     </a-assets>
 
     <a-assets>
-        <a-asset-item id="stairs" src="./gltfs/rainbowstairs/model.gltf"></a-asset-item>
+        <a-asset-item id="stairs" src="../gltfs/rainbowstairs/model.gltf"></a-asset-item>
     </a-assets>
 
     <a-assets>
-        <a-asset-item id="gameboy" src="./gltfs/gameboy/handheld.gltf"></a-asset-item>
+        <a-asset-item id="gameboy" src="../gltfs/gameboy/handheld.gltf"></a-asset-item>
     </a-assets>
 
     <a-assets>
-        <a-asset-item id="paradiselost" src="./gltfs/paradiselostedited.gltf"></a-asset-item>
+        <a-asset-item id="paradiselost" src="../gltfs/paradiselostedited.gltf"></a-asset-item>
     </a-assets>
 
 
     <a-assets>
-        <a-asset-item id="fan" src="./gltfs/atticfan/Attic Fan 2.gltf" scale="0.000001 0.000001 0.000001"></a-asset-item>
+        <a-asset-item id="fan" src="../gltfs/atticfan/Attic Fan 2.gltf" scale="0.000001 0.000001 0.000001"></a-asset-item>
     </a-assets>
 
     <a-assets>
-        <a-asset-item id="monitor" src="./gltfs/monitor/Monitor.gltf" scale="0.000001 0.000001 0.000001"></a-asset-item>
+        <a-asset-item id="monitor" src="../gltfs/monitor/Monitor.gltf" scale="0.000001 0.000001 0.000001"></a-asset-item>
     </a-assets>
 
-    <a-assets>
-        <a-asset-item id="particlesJson" src="./particles-fireworks.json"></a-asset-item>
-        <img src="./sprite.png" id="particleTex">
-    </a-assets>
 
 
     <a-entity  gltf-model="#future" color="white"  position="1 0 0" scale="0.9 0.9 0.9"></a-entity>
     <a-entity  trigger
-               particleplayer="on: particleplayerstart; src: #particlesJson; img: #particleTex; dur: 4000; count: 50%; scale: 0.6; pscale: 2; interpolate: true; shader: standard; poolSize: 20"
-
             animation__scale="property: scale; dir: alternate; dur: 2000;
                       easing: easeInSine; loop: true; to: 0.03 0.03 0.03" gltf-model="#gameboy"  position="0 0 0" scale="0.02 0.02 0.02"></a-entity>
 

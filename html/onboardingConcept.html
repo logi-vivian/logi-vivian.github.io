@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Title</title>
+    <title>Onboarding Concept</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-    <link href="./prototypeMain.css" rel="stylesheet">
+    <link href="../css/prototypeMain.css" rel="stylesheet">
 
 </head>
 <body>
 
 <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 <script src="https://rawgit.com/jeromeetienne/AR.js/1.7.5/aframe/build/aframe-ar.min.js"></script>
-<script src="./aframeRegistration.js"></script>
+<script src="../js/aframeRegistration.js"></script>
 
 <div id="modal">
     <p id="testtext">Welcome to Logitech G's Orion Spark.</p>
@@ -27,7 +27,7 @@
 
 
     <a-marker type='barcode' value='0' >
-        <a-text id="text_three" data-infoImgSrc="onboarding0.gif" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-text id="text_three" data-infoImgSrc="../assets/onboarding_gifs/onboarding0.gif" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>
 
 
     </a-marker>
@@ -35,7 +35,7 @@
 
     <a-marker type='barcode' value='1' registerevents>
 
-        <a-text id="text_one" data-infoImgSrc="onboarding_gifs/onboarding1.gif" data-textValue="WASD Keys" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-text id="text_one" data-infoImgSrc="../assets/onboarding_gifs/onboarding1.gif" data-textValue="WASD Keys" font="roboto" material='opacity: 0.5;'></a-text>
 
 
             <a-torus animation="property: rotation; dir: alternate; dur: 2000;
@@ -48,7 +48,7 @@
     </a-marker>
 
     <a-marker type='barcode' value='2' registerevents>
-        <a-text id="text_three" data-infoImgSrc="onboarding_gifs/onboarding2.gif" data-textValue="Media controls" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-text id="text_three" data-infoImgSrc="../assets/onboarding_gifs/onboarding2.gif" data-textValue="Media controls" font="roboto" material='opacity: 0.5;'></a-text>
         <a-entity animation__scale="property: scale; dir: alternate; dur: 2000;
                       easing: easeInSine; loop: true; to: 0.005 0.005 0.005" gltf-model="#monitor"  rotation= "0 20 0 " position="0 0 0" scale="0.003 0.003 0.003"></a-entity>
 
@@ -56,7 +56,7 @@
 
 
     <a-marker type='barcode' value='3' registerevents>
-        <a-text id="text_three" data-infoImgSrc="onboarding_gifs/onboarding3.gif" data-textValue="Onboarding" font="roboto" material='opacity: 0.5;'></a-text>
+        <a-text id="text_three" data-infoImgSrc="../assets/onboarding_gifs/onboarding3.gif" data-textValue="Onboarding" font="roboto" material='opacity: 0.5;'></a-text>
 
     </a-marker>
 
