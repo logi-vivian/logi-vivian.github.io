@@ -13,6 +13,7 @@
 <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 <script src="https://rawgit.com/jeromeetienne/AR.js/1.7.5/aframe/build/aframe-ar.min.js"></script>
 
+<!--Fixes a bug that comes with the library, bug usually reads in the inspector like 'camera parameters not found'.-->
 <script>
     THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/';
 </script>
@@ -42,13 +43,16 @@
     <!--BATTERIES -->
 
     <a-marker id="recycle" type='barcode' value='1'>
+<!--    Have the keyboard flip downwards in a nonloop (one time) animation.-->
         <a-text  data-infoImgSrc="" data-textValue="Battery Removal Best Practices" font="roboto"></a-text>
         <a-entity gltf-model="#keyboard1" scale="10 10 10"  position="0 3 1" animation="property: rotation; to: 0 0 -90;  dur: 5000">
-
         </a-entity>
+
+<!--    Have the battery bop up and down by animating position.-->
         <a-entity  gltf-model="#battery1"  id="battery" scale="10 10 10"  position="0 3.5 1" animation="property: position; to: 0 4 1 ; loop:true; delay: 3000; dir: alternate; dur: 2000;">
         </a-entity>
 
+<!--    Have the overlay pop up after a delay of 5 seconds by controlling visibility.   -->
         <a-image animation="property: visible; to: true; delay: 5000;"  visible="false"  src="#overlay_battery" position="0.7 3.8 1" scale="2 2 2"></a-image>
 
     </a-marker>

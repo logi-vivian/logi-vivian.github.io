@@ -16,12 +16,8 @@
 <script src="https://unpkg.com/aframe-particleplayer-component/dist/aframe-particleplayer-component.min.js"></script>
 
 <script>
+    //Following line must be included to fix a bug of the ar.js library.
     THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/';
-    AFRAME.registerComponent("foo", {
-        init: function() {
-            this.el.addEventListener("click", (e)=>{console.log("HELLO")})
-        }
-    })
 
     AFRAME.registerComponent('trigger', {
         init: function() {
@@ -47,31 +43,18 @@
         }
     });
 
-
+    //Event component to register when a marker is found or lost and propagate changes in the modal (change of text or image).
     AFRAME.registerComponent('registerevents', {
         init: function () {
             var marker = this.el;
-
-
 
             marker.addEventListener('markerFound', function() {
                 var markerId = marker.id;
                 console.log('markerFound', markerId);
                 text = marker.children[0];
-
-                // document.getElementById("modal").style.backgroundColor = colors[index % 4];
-                index+=1;
-
-                // document.getElementById("infoImg").src = text.getAttribute('data-infoImgSrc');
-
-
-
-
                 document.getElementById("testtext").innerText = text.getAttribute('data-textValue');
-
-
-
             });
+
             marker.addEventListener('markerLost', function() {
 
             });
@@ -83,25 +66,22 @@
 
 <body style='margin : 0; overflow: hidden;'>
 
-<button onclick="goDown()" style="position: absolute; background-color: rgba(0,0,0,0); left: 20%; top: 50%; z-index: 3;">DOWN</button>
+<button onclick="goDown()" style="position: absolute; background-color: rgba(0,0,0,0); left: 20%; top: 50%; z-index: 3;">DOWN
+</button>
 
-<button onclick="registeredClick()" style="position: absolute; background-color: rgba(0,0,0,0); right: 20%; bottom: 20%; z-index: 3;"><img width="150px" src="../assets/recyclelogo.png"></button>
+<button onclick="registeredClick()" style="position: absolute; background-color: rgba(0,0,0,0); right: 20%; bottom: 20%; z-index: 3;"><img width="150px" src="../assets/recyclelogo.png">
+</button>
 
 <script>
+    //When the icon was clicked, the camera would move upwards, by adding an animation that moves the position of the camera.
     function registeredClick() {
-
         let camera = document.querySelector("#camera");
-        console.log(camera);
         camera.setAttribute('animation', 'property: position; to: ' + camera.getAttribute('position').x + ' ' + (camera.getAttribute('position').y + 1) + ' ' + camera.getAttribute('position').z);
-
-
-
     }
 
+    //When the 'DOWN' button was clicked, the camera would move downwards, by adding an animation that moves the position of the camera.
     function goDown() {
-
         let camera = document.querySelector("#camera");
-        console.log(camera);
         camera.setAttribute('animation', 'property: position; to: ' + camera.getAttribute('position').x + ' ' + (camera.getAttribute('position').y - 1) + ' ' + camera.getAttribute('position').z);
 
 
@@ -109,15 +89,16 @@
     }
 </script>
 
-<!-- we add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
+<!-- Add detectionMode and matrixCodeType to tell AR.js to recognize barcode markers -->
 <a-scene id="scene" cursor="rayOrigin: mouse" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
     <a-camera id="camera" position="0 0 4">
 
     </a-camera>
 
-    <a-sky color="#000">
+<!--    AR scenes need to preload assets, which are 3D models in formats such as gltf.
+        Sometimes big models (particularly one's from Google Poly) need to be scaled down.
+-->
 
-    </a-sky>
     <a-assets>
         <a-asset-item id="future" src="../gltfs/thelongtomorrow/model.gltf"></a-asset-item>
     </a-assets>
@@ -134,7 +115,6 @@
         <a-asset-item id="paradiselost" src="../gltfs/paradiselostedited.gltf"></a-asset-item>
     </a-assets>
 
-
     <a-assets>
         <a-asset-item id="fan" src="../gltfs/atticfan/Attic Fan 2.gltf" scale="0.000001 0.000001 0.000001"></a-asset-item>
     </a-assets>
@@ -144,8 +124,12 @@
     </a-assets>
 
 
-
+<!--Given all these assets, it may take a second for all of them to load.-->
     <a-entity  gltf-model="#future" color="white"  position="1 0 0" scale="0.9 0.9 0.9"></a-entity>
+
+<!--    All 3D models are loaded as a-entities.
+        Some assets have animation attributes that change their scale to make them pop out at the user
+-->
     <a-entity  trigger
             animation__scale="property: scale; dir: alternate; dur: 2000;
                       easing: easeInSine; loop: true; to: 0.03 0.03 0.03" gltf-model="#gameboy"  position="0 0 0" scale="0.02 0.02 0.02"></a-entity>

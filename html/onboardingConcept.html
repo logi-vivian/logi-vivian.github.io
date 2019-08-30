@@ -1,3 +1,6 @@
+<!--This file demonstrates how different markers could trigger the introduction of different features on the product.
+It doesn't leverage the 3D affordance of AR very much, but GIFs do trigger on appearance of markers 0-4.-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +15,7 @@
 
 <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 <script src="https://rawgit.com/jeromeetienne/AR.js/1.7.5/aframe/build/aframe-ar.min.js"></script>
+<!--Registering a-entity component events-->
 <script src="../js/aframeRegistration.js"></script>
 
 <div id="modal">
@@ -25,19 +29,18 @@
 
 <a-scene id="scene" cursor="rayOrigin: mouse" vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; debugUIEnabled: false; detectionMode: mono_and_matrix; matrixCodeType: 3x3;'>
 
-
     <a-marker type='barcode' value='0' >
+<!--        The data-infoImgSrc is an attribute that passes on a relative path to an gif that will fill the modal when the marker is triggered-->
         <a-text id="text_three" data-infoImgSrc="../assets/onboarding_gifs/onboarding0.gif" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>
-
-
     </a-marker>
 
 
     <a-marker type='barcode' value='1' registerevents>
-
         <a-text id="text_one" data-infoImgSrc="../assets/onboarding_gifs/onboarding1.gif" data-textValue="WASD Keys" font="roboto" material='opacity: 0.5;'></a-text>
 
-
+<!--        Just placeholder 3D model, I attempted to correspond with the content in the gif, would be better to use actual Logi 3D files
+            Toruses are just a primitive shape (just like a-box and a-sphere).
+-->
             <a-torus animation="property: rotation; dir: alternate; dur: 2000;
                       easing: easeInSine; loop: true; to: 90 360 0"  color="#00eeee" arc="270" rotation="90 0 0" radius="0.5" radius-tubular="0.1"></a-torus>
             <a-torus animation="property: rotation; dir: alternate; dur: 2000;
@@ -47,6 +50,7 @@
 
     </a-marker>
 
+<!--    Attaching register events to the end of a marker means that the event component will be executed (see './js/aframeRegistration.js'-->
     <a-marker type='barcode' value='2' registerevents>
         <a-text id="text_three" data-infoImgSrc="../assets/onboarding_gifs/onboarding2.gif" data-textValue="Media controls" font="roboto" material='opacity: 0.5;'></a-text>
         <a-entity animation__scale="property: scale; dir: alternate; dur: 2000;

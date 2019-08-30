@@ -1,30 +1,22 @@
+
+<!--This page was a test page to integrate the Google Maps API into my project.
+It consists of a form that takes in latitude and longitude coordinates.
+When submitted, the form returns the nearest recycling centers within a certain radius, as if we had searched 'recycle' on Google Maps near %somelat%, %somelong% location.
+This code eventually got refactored into a file in the 'js' folder called 'initializeMap.js'-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
     <title>Map</title>
     <style>
         .textinput {
             margin: 20px;
             position: relative;
         }
+
         #map {
             height: 60%;
             display: flex;
@@ -37,29 +29,26 @@
         /* Optional: Makes the sample page fill the window. */
         html, body {
             font-family: 'Poppins', sans-serif;
-
-
-
             height: 100%;
             margin: 0;
             background-color: black;
             padding: 0;
         }
     </style>
-    <!--    <script type="text/javascript" src="../src/initializeMap.js"></script>-->
     <script>
         var map;
         var service;
         var infowindow;
+        // Hardcoded in a latitude and longitude, however, you could easily ask user for location.
         var lat = 37.539;
         var long = -122.062;
-
 
         function initMap() {
             var start = new google.maps.LatLng(lat, long);
 
             infowindow = new google.maps.InfoWindow();
 
+            // Creating a map in the dark mode CSS style
             map = new google.maps.Map(
                 document.getElementById('map'), {center: start, zoom: 12,
                     styles: [
@@ -145,6 +134,7 @@
 
                 });
 
+            //This is how we filter for local recycling centers, using keyword as constraint.
             var request = {
                 location: start,
                 radius: 10000,
@@ -156,15 +146,14 @@
             service.nearbySearch(request, function(results, status) {
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
                     for (var i = 0; i < results.length; i++) {
-                        console.log(results[i])
                         createMarker(results[i]);
                     }
-
                     map.setCenter(results[0].geometry.location);
                 }
             });
         }
 
+        //Creates red markers on the map based upon information from the place parameter.
         function createMarker(place) {
             var marker = new google.maps.Marker({
                 map: map,
@@ -177,9 +166,9 @@
             });
         }
 
+        // Regenerates the map based upon the latitude and longitude value that is in the form at the time.
         function regenerateMat() {
             lat = document.getElementById("enterLat").value;
-            console.log(lat);
             long = document.getElementById("enterLong").value;
             initMap();
 
@@ -195,7 +184,8 @@
 
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="map"></div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS35U6_6_LwZCpeeRSid3qs2opoydzo8E&libraries=places&callback=initMap" async defer></script>
+<!--This is the API call, however as I am leaving, I am deactivating my key. You can easily set up a new one with Google Maps API.-->
+<script src="https://maps.googleapis.com/maps/api/js?key=APIKEYHERE&libraries=places&callback=initMap" async defer></script>
 
 </body>
 </html>

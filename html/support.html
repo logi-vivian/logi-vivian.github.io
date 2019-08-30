@@ -12,6 +12,7 @@
 
 <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
 <script src="https://rawgit.com/jeromeetienne/AR.js/1.7.5/aframe/build/aframe-ar.min.js"></script>
+<!--Registering a-entity component events-->
 <script src="../js/aframeRegistration.js"></script>
 
 
@@ -45,7 +46,9 @@
 
     <a-marker type='barcode' value='0'>
         <a-text  data-infoImgSrc="" data-textValue="Get Support" font="roboto" material='opacity: 0.5;'></a-text>
+<!--        Allows us to make call from website-->
         <a-link href="tel:+6464543200"><a-image src="#supportOverlay" position="0 5 0" rotation="0 0 0" scale="3 3 3"></a-image></a>
+<!--            Set of images that represent placeholders for possible FAQ / guidance overlays-->
             <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true;" src="#supportstep1" position="-3 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
             <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true; delay: 3000;"  src="#supportstep2" position="0 2 0" rotation="0 0 0" scale="2 2 2"></a-image>
             <a-image animation="property: scale; to: 3 3 3; dir: alternate; dur: 1000; loop: true; delay: 6000;"  src="#supportstep3" position="3 2 0" rotation="0 0 0" scale="2 2 2"></a-image>

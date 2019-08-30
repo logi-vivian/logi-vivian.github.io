@@ -1,6 +1,9 @@
+// This file initializes the map using Google Maps API to create a map overlay that is triggered by a marker in './html/recyclingNearbyMap.html'
+
 var map;
 var service;
 var infowindow;
+// Hardcoded in a latitude and longitude, however, you could easily ask user for location.
 var lat = 37.539;
 var long = -122.062;
 
@@ -10,6 +13,7 @@ function initMap() {
 
     infowindow = new google.maps.InfoWindow();
 
+    // Creating a map with dark mode CSS.
     map = new google.maps.Map(
         document.getElementById('map'), {center: start, zoom: 12,
             styles: [
@@ -95,6 +99,7 @@ function initMap() {
 
         });
 
+    //This is how we filter for local recycling centers, using keyword as constraint.
     var request = {
         location: start,
         radius: 10000,
@@ -116,6 +121,7 @@ function initMap() {
     });
 }
 
+//Creates red markers on the map based upon information from the place parameter.
 function createMarker(place) {
     var marker = new google.maps.Marker({
         map: map,
@@ -132,6 +138,7 @@ function createMarker(place) {
 
 }
 
+// Regenerates the map based upon the latitude and longitude value that is in the form at the time.
 function regenerateMat() {
     lat = document.getElementById("enterLat").value;
     console.log(lat);
