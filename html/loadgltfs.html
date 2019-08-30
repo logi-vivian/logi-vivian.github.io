@@ -19,6 +19,7 @@
     //Following line must be included to fix a bug of the ar.js library.
     THREEx.ArToolkitContext.baseURL = 'https://rawgit.com/jeromeetienne/ar.js/master/three.js/';
 
+    //Another a-frame component such that when you press a key or click on the screen, a particle system of fireworks should pop up.
     AFRAME.registerComponent('trigger', {
         init: function() {
             document.addEventListener('keydown', evt => {
@@ -29,6 +30,7 @@
             });
         },
 
+        //Below math is for fireworks
         trigger: function() {
             console.log(this.el);
             this.el.emit('particleplayerstart', {
